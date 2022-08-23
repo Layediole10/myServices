@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string("department");
             $table->string("municipality");
             $table->string("district");
+            $table->string("occupation");
+            $table->string("contact");
             $table->boolean("publish")->default(false);
             $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("author_id");

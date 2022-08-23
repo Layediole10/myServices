@@ -12,13 +12,19 @@ class Article extends Model
     protected $fillable = [
         'title',
         'content',
-        'user_id' ,
-        'category_id' ,
-        'region_id' ,
+        'region',
         'department',
         'municipality',
         'district',
-        'active',
+        'occupation',
+        'contact',
+        'publish',
+        'author_id',
+        'category_id',
+        'image1',
+        'image2',
+        'image3',
+        'image4',
     ];
 
 

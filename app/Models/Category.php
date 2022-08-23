@@ -17,4 +17,8 @@ class Category extends Model
     public function district(){
         return $this->belongsTo(District::class);
     }
+
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
 }
