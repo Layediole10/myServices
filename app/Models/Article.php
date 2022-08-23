@@ -21,14 +21,10 @@ class Article extends Model
         'publish',
         'author_id',
         'category_id',
-        'image1',
-        'image2',
-        'image3',
-        'image4',
     ];
 
 
-    public function user(){
+    public function author(){
         return $this->belongsTo(User::class);
     }
 

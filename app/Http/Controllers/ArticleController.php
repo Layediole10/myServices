@@ -23,7 +23,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+       $articles = Article::all();
+       $images = Image::all();
+       return view('admin.article.articleList', [
+            'articles' => $articles,
+            'images' => $images,
+       ]);
     }
 
     /**
@@ -31,12 +36,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        // if(!$request->session()->has('index')) {
-        //     $request->session()->put('index', Str::random(30));
-        // }
-
+       
         $categories = Category::select('title', 'id')->get();
         $regions = Region::select('name', 'id')->oldest('name')->get();
         $departments = Department::select('name', 'id')->oldest('name')->get();
@@ -83,7 +85,7 @@ class ArticleController extends Controller
         // dd($newArticle);
         if ($request->has('images')) {
             foreach($request->file('images')as $image){
-                $imageName = $valid['title'].'-image-'.time().'.'.$image->getClientOriginalExtension();
+                $imageName = 'image-'.time().rand(1,1000).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('articleImages'),$imageName);
 
                 $articleCreate = Image::create([
@@ -92,7 +94,8 @@ class ArticleController extends Controller
                 ]);
             }
         }
-        dd($articleCreate);  
+        
+        return view('admin.article.confirm');  
 
     }
 

@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//HOME PAGE
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//ARTICLES ROUTES
 Route::prefix('home')->group(function () {
     Route::resource('articles', ArticleController::class);
 });
