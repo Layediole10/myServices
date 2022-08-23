@@ -23,11 +23,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-       $articles = Article::all();
-       $images = Image::all();
+       $articles = Article::paginate(5);
+       
        return view('admin.article.articleList', [
             'articles' => $articles,
-            'images' => $images,
        ]);
     }
 
