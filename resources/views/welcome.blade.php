@@ -10,11 +10,12 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-        
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            <h1 align="center">Bienvenus à notre site de services!</h1>
+            
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block home">
                     
@@ -31,10 +32,24 @@
             @endif
         </div>
 
-        <main class="container">
-            @yield('content')
+        <main class="container text-center">
+            <div class="row">
+                <div class="col">
+                  1 of 3
+                </div>
+                <div class="col-8">
+                    <h1>Déposez vos annonces ici!</h1>
+                  @yield('content')
+                </div>
+                <div class="col">
+                  3 of 3
+                </div>
+            </div>  
         </main>
 
 
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </body>
 </html>
