@@ -7,17 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/create.css')}}">
-    {{-- Icones --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <title>@yield('title')</title>
 
     <!-- Scripts -->
     @viteReactRefresh
@@ -78,19 +72,10 @@
                 </div>
             </div>
         </nav>
-        <x-navbar/>
-        <main class=" container-fluid">
-            <div class="row">
-                <x-sidebar/> 
-                <div class="col">
-                    @yield('content')
-                </div>
-            
-                 
-            </div>
+
+        <main class="py-4">
+            @yield('content')
         </main>
     </div>
-
-    
 </body>
 </html>

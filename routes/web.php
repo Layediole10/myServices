@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfessionalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,11 @@ Route::get('/', function (){
     return view('welcome');
 });
 
+Route::get('/registration', function (){
+    return view('sign');
+})->name('signin');
+
+
 Auth::routes();
 
 //ADMIN ROUTE
@@ -33,6 +39,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::resource('articles', ArticleController::class);
     });
 });
+
+//PROFESSIONAL ROUTE
+Route::middleware(['auth', 'professional'])->group(function(){
+    Route::get('/professional', [ProfessionalController::class, 'index'])->name('professional');
+});
+
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * where to redirect admin after registration
@@ -38,8 +38,10 @@ class RegisterController extends Controller
     {
         if (auth()->user()->role == 'admin') {
             return '/admin';
-        }
-        return '/home';
+        }elseif (auth()->user()->role == 'professional'){
+                 return '/professional';
+            }
+            return '/home';
     }
 
     /**

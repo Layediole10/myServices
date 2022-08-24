@@ -1,4 +1,4 @@
-@extends('layouts.article')
+@extends('layouts.professional')
 @section('title','confirmation')
 @section('content')
     <div class="container">
