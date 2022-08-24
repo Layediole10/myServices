@@ -1,4 +1,4 @@
-@extends('layouts.article')
+@extends('layouts.admin')
 @section('title','creer une annonce')
 @section('content')
     <div class="container p-4">

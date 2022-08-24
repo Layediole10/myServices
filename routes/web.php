@@ -18,18 +18,22 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 //HOME PAGE
-Route::get('/', function () {
+Route::get('/', function (){
     return view('welcome');
 });
 
-//ADMIN ROUTE
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
 Auth::routes();
+
+//ADMIN ROUTE
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+    //ARTICLES ROUTES
+    Route::prefix('admin')->group(function () {
+        Route::resource('articles', ArticleController::class);
+    });
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-//ARTICLES ROUTES
-Route::prefix('admin')->group(function () {
-    Route::resource('articles', ArticleController::class);
-});

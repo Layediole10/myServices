@@ -1,4 +1,4 @@
-@extends('layouts.article')
+@extends('layouts.admin')
 @section('title','liste d\'articles')
 @section('content')
     <table class="table table-bordered border-primary">

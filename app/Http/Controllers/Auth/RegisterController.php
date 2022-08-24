@@ -31,6 +31,9 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    /**
+     * where to redirect admin after registration
+     */
     protected function redirectTo()
     {
         if (auth()->user()->role == 'admin') {
