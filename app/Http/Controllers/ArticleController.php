@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     /**
@@ -87,7 +87,7 @@ class ArticleController extends Controller
                 $imageName = 'image-'.time().rand(1,1000).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('articleImages'),$imageName);
 
-                $articleCreate = Image::create([
+                Image::create([
                     'article_id'=>$newArticle->id,
                     'image'=>$imageName
                 ]);
@@ -117,7 +117,19 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $categories = Category::select('title', 'id')->get();
+        $regions = Region::select('name', 'id')->oldest('name')->get();
+        $departments = Department::select('name', 'id')->oldest('name')->get();
+        $municipalities = Municipality::select('name', 'id')->oldest('name')->get();
+        $districts = District::select('name', 'id')->oldest('name')->get();
+        return view('admin.article.articleEdited', [
+            "article"=>$article,
+            'categories'=>$categories, 
+            'regions'=>$regions,
+            'departments'=>$departments,
+            'municipalities'=>$municipalities,
+            'districts'=>$districts,
+        ]);
     }
 
     /**
@@ -129,7 +141,38 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $valid = $request->validate([
+            'title' => 'required|string|max:50',
+            'content' => 'required|string',
+        ]);
+
+        $articleEdited = $valid;
+        $articleEdited['category_id'] = $request->category;
+        $articleEdited['region'] = $request->region;
+        $articleEdited['department'] = $request->department;
+        $articleEdited['municipality'] = $request->municipality;
+        $articleEdited['district'] = $request->district;
+        $articleEdited['publish'] = $request->publish?true:false;
+        $articleEdited['author_id'] = Auth::user()->id;
+        $articleEdited['occupation'] = $request->occupation;
+        $articleEdited['contact'] = $request->contact;
+        $article->update($articleEdited);
+        // dd($newArticle);
+        if ($request->has('images')) {
+            foreach($request->file('images')as $image){
+                $imageName = 'image-'.time().rand(1,1000).'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('articleImages'),$imageName);
+
+                Image::create([
+                    'article_id'=>$article->id,
+                    'image'=>$imageName
+                ]);
+            }
+        }
+
+
+        return redirect()->route('articles.index')->with('update', "L'article n° $article->id a été mis à jour avec succès!");
+
     }
 
     /**
@@ -140,6 +183,32 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return back()->with('delete', "L'article n° $article->id a été supprimé avec succès!");
+    }
+
+    public function publish($id){
+        $articlePublish = Article::find($id);
+        $articlePublish->publish = !$articlePublish->publish;
+        $message = '';
+        if ($articlePublish['publish']) {
+            $message = "L'article n° $id publié avec succès!";
+        }else{
+            $message = "L'article n° $id dépublié avec succès!";
+        }
+
+        if ($articlePublish->update()) {
+            return redirect()->route('articles.index')->with(["message"=>$message]);
+        }
+            return back()->with("error","La mise à jour de l'article n° $id échouée!")->withInput();;
+    }
+
+    public function view($id){
+        $article = Article::find($id);
+        $images = $article->images;
+        return view('admin.article.viewImage', [
+            'images' => $images,
+            'article' => $article,
+        ]);
     }
 }

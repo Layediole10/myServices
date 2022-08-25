@@ -37,6 +37,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //ARTICLES ROUTES
     Route::prefix('admin')->group(function () {
         Route::resource('articles', ArticleController::class);
+        Route::put('articles/{id}/publish', [ArticleController::class, 'publish'])->name('articles.publish');
+        Route::get('articles/{id}/view', [ArticleController::class, 'view'])->name('articles.view');
     });
 });
 
