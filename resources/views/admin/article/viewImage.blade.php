@@ -6,7 +6,7 @@
   <div class="row mt-4">
     @foreach ($images as $image)
         <div class="col-md-3">
-          <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+          <div class="card text-white mb-3" style="max-width: 20rem;">
             <div class="card-body">
               <img src="/articleImages/{{$image->image}}" class="card-img-top">
             </div>
