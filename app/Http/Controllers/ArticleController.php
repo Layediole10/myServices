@@ -181,8 +181,10 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
+        $image = Image::where('article_id', $id)->delete();
+        $article = Article::find($id);
         $article->delete();
         return back()->with('delete', "L'article n° $article->id a été supprimé avec succès!");
     }

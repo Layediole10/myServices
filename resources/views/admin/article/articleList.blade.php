@@ -73,7 +73,7 @@
                             <i class="bi bi-eye"></i>
                         </a>
 
-                        <form id="delete-{{$article->id}}" action="{{route('articles.destroy',['article'=>$article->id])}}" method="post">
+                        <form id="delete-{{$article->id}}" action="{{route('articles.destroy',['id'=>$article->id])}}" method="post">
                             @csrf
                             @method('delete')
                         </form>
