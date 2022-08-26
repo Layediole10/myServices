@@ -144,6 +144,7 @@ class ArticleController extends Controller
         $valid = $request->validate([
             'title' => 'required|string|max:50',
             'content' => 'required|string',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
 
         $articleEdited = $valid;
@@ -212,5 +213,12 @@ class ArticleController extends Controller
             'images' => $images,
             'article' => $article,
         ]);
+    }
+
+
+    public function search(){
+        $search = request()->input('q');
+        $results = Article::where('title', 'like', "%$search%")->orwhere('content', 'like', "%$search%")->paginate(5);
+        return view('admin.article.search', ['results'=>$results]);
     }
 }

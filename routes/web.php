@@ -36,10 +36,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //ARTICLES ROUTES
     Route::prefix('admin')->group(function () {
-        Route::resource('articles', ArticleController::class)->except(['delete']);;
+        Route::resource('articles', ArticleController::class)->except(['delete']);
         Route::put('articles/{id}/publish', [ArticleController::class, 'publish'])->name('articles.publish');
         Route::get('articles/{id}/view', [ArticleController::class, 'view'])->name('articles.view');
         Route::delete('articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+        Route::get('/search', [ArticleController::class, 'search'])->name('articles.search');
     });
 });
 

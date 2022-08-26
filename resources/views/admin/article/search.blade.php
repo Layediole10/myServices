@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title','liste d\'articles')
 @section('content')
-    {{$articles->links()}}
+    {{$results->links()}}
 
     @if (session('delete'))
         <div class="alert alert-success">
@@ -42,7 +42,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($articles as $article)
+            @if ($results->count() == 0)
+                <div class="alert alert-danger">
+                    <h3>Aucun résultat  trouvé!</h3>
+                </div>
+            @else
+            <div class="alert alert-success">
+                <h3> {{$results->count()}} résultat(s)  trouvé(s)!</h3>
+            </div>
+            @foreach ($results as $article)
+                
                 <tr>
                     <td>{{$article->id}}</td>
                     <td>{{$article->title}}</td>
@@ -80,8 +89,9 @@
                         </form>
                     </td>
                 </tr> 
-            @endforeach            
+            @endforeach 
+            @endif           
         </tbody>
     </table>
-    {{$articles->links()}}
+    {{$results->links()}}
 @endsection
