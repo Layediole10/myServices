@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('S\'enregistrer en tant que demandeur de services') }}</div>
+                <div class="card-header">{{ __('S\'enregistrer en tant que Professional') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('professional.store') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -57,7 +57,7 @@
                             {{-- <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Nom et Prénom') }}</label> --}}
 
                             <div class="col-md-6">
-                                <input id="role" type="hidden" class="form-control @error('role') is-invalid @enderror" name="role" value="user" required autocomplete="role" autofocus>
+                                <input id="role" type="hidden" class="form-control @error('role') is-invalid @enderror" name="role" value="professional" required autocomplete="role" autofocus>
 
                                 @error('role')
                                     <span class="invalid-feedback" role="alert">

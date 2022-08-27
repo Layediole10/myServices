@@ -219,6 +219,6 @@ class ArticleController extends Controller
     public function search(){
         $search = request()->input('q');
         $results = Article::where('title', 'like', "%$search%")->orwhere('content', 'like', "%$search%")->paginate(5);
-        return view('admin.article.search', ['results'=>$results]);
+        return view('admin.article.searchArticle', ['results'=>$results]);
     }
 }

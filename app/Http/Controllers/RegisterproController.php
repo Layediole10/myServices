@@ -6,21 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ProfessionalController extends Controller
+class RegisterproController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * admin home
-     */
-    public function index()
-    {
-        return view('professional.homeprof');
-    }
-
     public function create()
     {
         return view('auth.registerpro');
@@ -46,5 +33,4 @@ class ProfessionalController extends Controller
         User::create($register);
         return redirect('/login');
     }
-    
 }

@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title','liste d\'articles')
 @section('content')
+
     {{$articles->links()}}
 
     @if (session('delete'))
@@ -26,6 +27,13 @@
             {{session('error')}}
         </div>
     @endif
+
+    <form class="d-flex mb-3 w-50" role="search" action="{{route('articles.search')}}" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request()->q ?? ''}}">
+        <button class="btn btn-outline-success" type="submit" >
+          <i class="bi bi-search"></i>
+        </button>
+    </form>
 
     <table class="table table-bordered border-primary">
         <thead>

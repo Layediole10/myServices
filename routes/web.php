@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\RegisterproController;
 use App\Http\Controllers\ProfessionalController;
 
 /*
@@ -30,6 +32,7 @@ Route::get('/registration', function (){
 
 Auth::routes();
 
+
 //ADMIN ROUTE
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
@@ -42,6 +45,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::delete('articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
         Route::get('/search', [ArticleController::class, 'search'])->name('articles.search');
     });
+
+    //USERS ROUTES
+    Route::resource('users', UserController::class);
+    Route::get('/search', [UserController::class, 'search'])->name('users.search');
+    Route::get('users/{id}/view', [UserController::class, 'view'])->name('users.view');
 });
 
 //PROFESSIONAL ROUTE
@@ -49,6 +57,8 @@ Route::middleware(['auth', 'professional'])->group(function(){
     Route::get('/professional', [ProfessionalController::class, 'index'])->name('professional');
 });
 
+Route::get('/professional/create', [RegisterproController::class, 'create'])->name('professional.create');
+Route::post('/professional', [RegisterproController::class, 'store'])->name('professional.store');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

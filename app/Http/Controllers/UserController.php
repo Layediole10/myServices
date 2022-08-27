@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate(5);
+        return view('admin.user.userList', ['users'=>$users]);
     }
 
     /**
@@ -56,7 +58,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return  view('admin.user.userEdited', ['user'=>$user]);
     }
 
     /**
@@ -77,8 +80,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        
+        $user->delete();
+        return back()->with('delete', "L'utilisateur n° $user->id a été supprimé avec succès!");
+    }
+
+    public function view($id){
+        
+    }
+
+
+    public function search(){
+        $search = request()->input('q');
+        $results = User::where('name', 'like', "%$search%")->orwhere('email', 'like', "%$search%")->orwhere('role', 'like', "%$search%")->orwhere('contact', 'like', "%$search%")->paginate(5);
+        return view('admin.user.searchUser', ['results'=>$results]);
     }
 }

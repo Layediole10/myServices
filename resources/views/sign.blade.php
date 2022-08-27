@@ -13,7 +13,7 @@
         
         <div>
             <div class="card">
-                <a href="{{route('register')}}">
+                <a href="{{route('professional.create')}}">
                     <img src="{{asset('avatar/avatar.png')}}" alt="avatar" width="200px">
                 </a>
             </div>
