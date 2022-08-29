@@ -71,13 +71,37 @@
                     </ul>
                 </div>
             </div>
-        </nav>
 
+        </nav>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Page d'un Professionel</h1>
+            
+            <div class="btn-toolbar mb-2 mb-md-0">
+               
+              <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+              <a href="{{route("articlepro.create")}}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-plus-circle"></i>
+                  Create Article
+              </a>
+        
+            </div>
+        </div>
         <main class="container text-center">
             <div class="row">
                 <div class="col">
+                    @if (session('compteUpdate'))
+                        <div class="alert alert-success">
+                            {{session('compteUpdate')}}
+                        </div>
+                    @endif
                     <img src="{{asset('avatar/avatar.png')}}" alt="avatar" width="150px">
                   <h4>profil</h4>
+                  <h5>
+                    <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
+                  </h5>
                   @yield('profil')
                 </div>
                 <div class="col-8">

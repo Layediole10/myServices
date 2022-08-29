@@ -12,8 +12,11 @@
 
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+        @viteReactRefresh
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
     </head>
-    <body class="antialiased">
+    <body>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             
             @if (Route::has('login'))
@@ -31,25 +34,26 @@
                 </div>
             @endif
         </div>
-
         <main class="container text-center">
             <div class="row">
                 <div class="col">
-                  1 of 3
+                    
                 </div>
                 <div class="col-8">
-                    <h1>Déposez vos annonces ici!</h1>
+                    
+                    <div id="root"></div>
                   @yield('content')
                 </div>
                 <div class="col">
-                  3 of 3
+                  
                 </div>
             </div>  
         </main>
 
-
+        
 
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        {{-- <script src="{{asset('')}}" defer></script> --}}
     </body>
 </html>

@@ -1,13 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.professional')
 @section('title','creer une annonce')
 @section('content')
-
-    
     <div class="container p-4">
                     
-        <form action="{{route('articles.update',['article'=>$article->id])}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('articlepro.store')}}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('put')
+
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-header">Votre annonce</h5>
@@ -22,18 +20,24 @@
         
                     <div class="card mb-3">
                         <label for="title">Titre</label>
-                        <input type="text" class="@error('title') is-invalid @enderror" name="title" id="title" value="{{$article->title}}">
+                        <input type="text" name="title" id="title" class="@error('title') is-invalid @enderror">
 
                         @error('title')
                             <div class="alert alert-danger">
-                            {{$message}}
+                                {{$message}}
                             </div>
                         @enderror
                     </div>
                     
                     <div class="card mb-3">
                         <label for="texte">Texte</label>
-                        <textarea class="form-control" id="texte" name="content" rows="3" required>{{$article->content}}</textarea>
+                        <textarea class="form-control @error('content') is-invalid @enderror" id="texte" name="content" rows="3" required></textarea>
+
+                        @error('content')
+                            <div class="alert alert-danger">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="card mb-3">
@@ -57,7 +61,7 @@
                         <label for="department">Département</label>
                         <select class="custom-select" name="department" id="department">
                             @foreach ($departments as $department)
-                            <option value="{{$department->id}}"">{{$department->name}}</option>
+                            <option value="{{$department->id}}">{{$department->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -86,17 +90,35 @@
 
                     <div class="card mb-3">
                         <label for="occupation">Profession</label>
-                        <input type="text" name="occupation" id="occupation" value="{{$article->occupation}}">
+                        <input type="text" name="occupation" id="occupation" class="@error('occupation') is-invalid @enderror">
+
+                        @error('occupation')
+                            <div class="alert alert-danger">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="card mb-3">
                         <label for="contac">Contact</label>
-                        <input type="text" name="contact" id="contact" value="{{$article->contact}}">
+                        <input type="text" name="contact" id="contact" value="{{Auth::user()->contact}}" class="@error('contact') is-invalid @enderror">
+
+                        @error('contact')
+                            <div class="alert alert-danger">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" name="publish"  role="switch" id="publish">
+                  <label class="form-check-label" for="publish">Published</label>
+                </div>
+            </div>
             
-            <button type="submit" class="btn btn-primary">Modifier</button>   
+            <button type="submit" class="btn btn-primary">Valider</button>   
         
         </form>
 

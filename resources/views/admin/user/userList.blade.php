@@ -55,7 +55,7 @@
                     <td>{{$user->contact}}</td>
                     <td>{{$user->created_at}}</td>
                     <td>
-                        <a href="{{route('users.edit',['user'=>$user->id])}}" style="text-decoration: none">
+                        <a href="#" style="text-decoration: none">
                             <i class="bi bi-pencil-square px-1"></i>
                         </a>
                         <a href="#" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?')){document.getElementById('delete-{{$user->id}}').submit()}" style="text-decoration: none">

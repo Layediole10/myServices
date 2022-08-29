@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleproController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterproController;
 use App\Http\Controllers\ProfessionalController;
@@ -47,7 +48,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
     //USERS ROUTES
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except(['edit', 'update']);
     Route::get('/search', [UserController::class, 'search'])->name('users.search');
     Route::get('users/{id}/view', [UserController::class, 'view'])->name('users.view');
 });
@@ -55,6 +56,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 //PROFESSIONAL ROUTE
 Route::middleware(['auth', 'professional'])->group(function(){
     Route::get('/professional', [ProfessionalController::class, 'index'])->name('professional');
+    Route::get('/professional-create-article', [ArticleproController::class, 'create'])->name('articlepro.create');
+    Route::post('/professional-create-article',[ArticleproController::class, 'store'])->name('articlepro.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
 });
 
 Route::get('/professional/create', [RegisterproController::class, 'create'])->name('professional.create');
