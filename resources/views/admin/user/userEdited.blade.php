@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('S\'enregistrer en tant que Professional') }}</div>
+                    <div class="card-header">{{ __('Mettre à jour les données du Professionnel') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.update', ['user'=>$user->id]) }}">
@@ -55,8 +55,6 @@
                             </div>
 
                             <div class="row ">
-                                {{-- <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Nom et Prénom') }}</label> --}}
-
                                 <div class="col-md-6">
                                     <input id="role" type="hidden" class="form-control @error('role') is-invalid @enderror" name="role" value="professional" required autocomplete="role" autofocus>
 
@@ -68,11 +66,9 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot De Passe') }}</label>
-
+                            <div class="row">
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" value="{{$user->password}}">
+                                    <input id="password" type="hidden" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" value="{{$user->password}}">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -82,18 +78,16 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmation ') }}</label>
-
+                            <div class="row">
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="hidden" class="form-control" name="password_confirmation" required autocomplete="new-password" value="{{$user->password}}">
                                 </div>
                             </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('S\'inscrire') }}
+                                        {{ __('Modifier') }}
                                     </button>
                                 </div>
                             </div>

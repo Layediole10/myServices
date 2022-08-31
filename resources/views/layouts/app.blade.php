@@ -80,11 +80,12 @@
                 </div>
             </div>
         </nav>
-
+        
         <main class="container text-center">
             <div class="row">
                 <div class="col">
                     @auth
+                        
                         <img src="{{asset('avatar/avatar.png')}}" alt="avatar" width="150px">
                         <h4>profil</h4>
                         @yield('profil')
@@ -94,7 +95,7 @@
                   @yield('content')
                 </div>
                 <div class="col">
-                  3 of 3
+                 
                 </div>
             </div>  
         </main>

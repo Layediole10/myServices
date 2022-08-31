@@ -7,6 +7,10 @@
         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
         <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
       </div>
+      <a href="{{route("users.create")}}" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-plus-circle"></i>
+          New User
+      </a>
       <a href="{{route("articles.create")}}" class="btn btn-sm btn-outline-secondary">
         <i class="bi bi-plus-circle"></i>
           New Article

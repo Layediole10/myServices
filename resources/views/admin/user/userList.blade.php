@@ -26,6 +26,13 @@
             {{session('error')}}
         </div>
     @endif
+
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+    @endif
+
     <form class="d-flex mb-3 w-50" role="search" action="{{route('users.search')}}" method="GET">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{request()->q ?? ''}}">
         <button class="btn btn-outline-success" type="submit" >

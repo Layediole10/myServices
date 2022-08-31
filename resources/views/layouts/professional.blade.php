@@ -97,12 +97,13 @@
                             {{session('compteUpdate')}}
                         </div>
                     @endif
+                    @yield('profile')
                     <img src="{{asset('avatar/avatar.png')}}" alt="avatar" width="150px">
                   <h4>profil</h4>
                   <h5>
                     <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
                   </h5>
-                  @yield('profil')
+                  
                 </div>
                 <div class="col-8">
                   @yield('content')

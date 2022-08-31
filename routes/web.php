@@ -31,7 +31,7 @@ Route::get('/registration', function (){
 })->name('signin');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 //ADMIN ROUTE
@@ -66,5 +66,7 @@ Route::get('/professional/create', [RegisterproController::class, 'create'])->na
 Route::post('/professional', [RegisterproController::class, 'store'])->name('professional.store');
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
 

@@ -184,7 +184,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $image = Image::where('article_id', $id)->delete();
+        Image::where('article_id', $id)->delete();
         $article = Article::find($id);
         $article->delete();
         return back()->with('delete', "L'article n° $article->id a été supprimé avec succès!");
