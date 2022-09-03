@@ -64,13 +64,13 @@
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Votre Role') }}</label>
 
                             
-                                <select name="role" id="role" class="col-md-6">
+                                <select name="role" id="role" class="form-select w-50">
                                     <option value="admin" class="form-control">Admin</option>
                                     <option value="professional" class="form-control">Professional</option>
                                     <option value="user" class="form-control">User</option>
                                 </select>
                             
-                        </div>
+                        </div>                        
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

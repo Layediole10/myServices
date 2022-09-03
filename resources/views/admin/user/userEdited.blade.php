@@ -9,7 +9,7 @@
                     <div class="card-header">{{ __('Mettre à jour les données du Professionnel') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.update', ['user'=>$user->id]) }}">
+                        <form method="POST" action="{{ route('users.update', ['user'=>$user->id]) }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -81,6 +81,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="hidden" class="form-control" name="password_confirmation" required autocomplete="new-password" value="{{$user->password}}">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('Modifier Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="photo" type="file" class="form-control" name="photo">
                                 </div>
                             </div>
 

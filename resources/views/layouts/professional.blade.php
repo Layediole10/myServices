@@ -97,9 +97,14 @@
                             {{session('compteUpdate')}}
                         </div>
                     @endif
-                    @yield('profile')
-                    <img src="{{asset('avatar/avatar.png')}}" alt="avatar" width="150px">
-                  <h4>profil</h4>
+                    {{-- @yield('profile') --}}
+                    @if (Auth::user()->photo == null)
+                        <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="150px" height="150px" class="rounded-circle pb-2">
+                        @else
+                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="150px" height="150px"  class="rounded-circle pb-2">
+                    @endif
+                    
+                  <h4>{{Auth::user()->name}}</h4>
                   <h5>
                     <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
                   </h5>

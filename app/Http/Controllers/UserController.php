@@ -108,18 +108,28 @@ class UserController extends Controller
             $user = User::find($id);
             $validate = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255' ],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'contact' => 'required|string',
                 'role' => ['required', 'string'],
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
             ]);
-    
+
+            // dd($path);
             $register = $validate;
             $register['name'] = $request->name;
             $register['email'] = $request->email;
             $register['password'] = Hash::make($request->password);
             $register['contact'] = $request->contact;
             $register['role'] = $request->role;
+            
+            if ($request->file('photo')) {
+                $photo = $request->file('photo');
+                $photoName = time().'.'.$photo->getClientOriginalExtension();
+                $photo->move(public_path('profile'), $photoName);
+                $path = '/profile/'.$photoName;
+                $register['photo'] = $path;
+            }
     
             $user->update($register);
         
