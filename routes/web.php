@@ -8,8 +8,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleproController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\RegisterproController;
+use App\Http\Controllers\RegisterProController;
 use App\Http\Controllers\ProfessionalController;
+use App\Http\Controllers\PublishArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,15 +56,23 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 //PROFESSIONAL ROUTE
 Route::middleware(['auth', 'professional'])->group(function(){
-    Route::get('/professional', [ProfessionalController::class, 'index'])->name('professional');
+    Route::get('/professional', [RegisterProController::class, 'index'])->name('professional');
     Route::get('/professional-create-article', [ArticleproController::class, 'create'])->name('articlepro.create');
     Route::post('/professional-create-article',[ArticleproController::class, 'store'])->name('articlepro.store');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/professional/{professional}/edit', [RegisterProController::class, 'edit'])->name('professional.edit');
+    Route::post('/professional/{professional}', [RegisterProController::class, 'update'])->name('professional.update');
 });
 
-Route::get('/professional/create', [RegisterproController::class, 'create'])->name('professional.create');
-Route::post('/professional', [RegisterproController::class, 'store'])->name('professional.store');
+Route::get('/professional/create', [RegisterProController::class, 'create'])->name('professional.create');
+Route::post('/professional', [RegisterProController::class, 'store'])->name('professional.store');
+
+//USERS ROUTES
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+//DISPLAY ARTICLES ROUTES
+Route::get('/professional', [PublishArticleController::class, 'index']);
+
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

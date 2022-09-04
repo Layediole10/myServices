@@ -108,20 +108,17 @@ class UserController extends Controller
             $user = User::find($id);
             $validate = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255' ],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'email' => ['required', 'string', 'email', 'max:255' ],       
                 'contact' => 'required|string',
-                'role' => ['required', 'string'],
                 'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
             ]);
 
             // dd($path);
             $register = $validate;
             $register['name'] = $request->name;
-            $register['email'] = $request->email;
-            $register['password'] = Hash::make($request->password);
+            $register['email'] = $request->email;            
             $register['contact'] = $request->contact;
-            $register['role'] = $request->role;
+            
             
             if ($request->file('photo')) {
                 $photo = $request->file('photo');
@@ -134,7 +131,7 @@ class UserController extends Controller
             $user->update($register);
         
             if ($user) {
-                return redirect('/professional')->with('compteUpdate', 'Votre compte a été bien mis à jour!');
+                return redirect('/home')->with('compteUpdate', 'Votre compte a été bien mis à jour!');
             
              }else{
                  return back()->with("errorRegister","registration failed")->withInput();

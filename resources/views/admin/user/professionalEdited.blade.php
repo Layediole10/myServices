@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.professional')
 
 @section('content')
 
@@ -15,10 +15,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Mettre à jour les données du Demandeur') }}</div>
+                    <div class="card-header">{{ __('Mettre à jour les données du Professionnel') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.update', ['user'=>$user->id]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('professional.update', ['professional'=>$user->id]) }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">

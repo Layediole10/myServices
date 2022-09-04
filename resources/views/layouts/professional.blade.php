@@ -99,14 +99,14 @@
                     @endif
                     {{-- @yield('profile') --}}
                     @if (Auth::user()->photo == null)
-                        <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="150px" height="150px" class="rounded-circle pb-2">
+                        <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="100px" height="100px" class="rounded-circle m-2">
                         @else
-                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="150px" height="150px"  class="rounded-circle pb-2">
+                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="100px" height="100px"  class="rounded-circle m-2">
                     @endif
                     
-                  <h4>{{Auth::user()->name}}</h4>
+                  <h5>{{Auth::user()->name}}</h5>
                   <h5>
-                    <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
+                    <a href="{{route('professional.edit',['professional'=>Auth::user()->id])}}">Gérer mon compte</a>
                   </h5>
                   
                 </div>

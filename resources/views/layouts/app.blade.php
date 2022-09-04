@@ -80,22 +80,30 @@
                 </div>
             </div>
         </nav>
-        
+
         <main class="container text-center">
             <div class="row">
+                
                 <div class="col">
                     @auth
-                        
-                        <img src="{{asset('avatar/avatar.png')}}" alt="avatar" width="150px">
-                        <h4>profil</h4>
-                        @yield('profil')
+                        @if (Auth::user()->photo == null)
+                        <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="130px" height="150px" class="rounded-circle py-3">
+                        @else
+                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="130px" height="150px"  class="rounded-circle py-3">
+                        @endif
+                            <h6>{{Auth::user()->name}}</h6>
+                            <h5>
+                                <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
+                            </h5>
+                        {{-- @yield('profil') --}}
                     @endauth
                 </div>
+                
                 <div class="col-8">
                   @yield('content')
                 </div>
                 <div class="col">
-                 
+                  3 of 3
                 </div>
             </div>  
         </main>
