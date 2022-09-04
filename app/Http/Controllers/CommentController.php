@@ -37,18 +37,16 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|string|max:50',
-            'email' => 'required|string|email|unique:user',
             'content' => 'required|string',
         ]);
-
+        
         $validate['name'] = Auth::user()->name;
         $validate['email'] = Auth::user()->email;
         $validate['content'] = $request->content;
         $validate['article_id'] = $request->article_id;
-
+        // dd($validate);
         Comment::create($validate);
-        
+        return back();
     }
 
     /**

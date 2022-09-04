@@ -2,7 +2,7 @@
 @section('title', 'images de l\'article')
 @section('content')
   <h2>Images de l'article : <span class="text-primary">{{$article->title}}</span> </h2>
-  <a href="{{route('articles.index')}}" class="btn btn-primary">Go Back</a>
+  <a href="{{route('articles.index')}}" class="btn btn-primary">Retour</a>
   <div class="row mt-4">
     @foreach ($images as $image)
         <div class="col-md-3">

@@ -25,25 +25,56 @@
                     
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                                @foreach ($article->images as $image)
-                                    <div class="carousel-item active">
-                                        <img src="{{asset('/articleImages/'.$image->image)}}" class="d-block w-100" alt="artiicle-image" width="90%" height="350px">
-                                    </div>  
-                                @endforeach
+                            @foreach ($article->images as $image)
+                                <div class="carousel-item active">
+                                    <img src="{{asset('/articleImages/'.$image->image)}}" class="d-block w-100" alt="artiicle-image" width="90%" height="350px">
+                                </div>  
+                            @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
                         </button>
-                      </div>
+                    </div>
                         
                     
                 </div>
             </div>
+            <hr>
+            <div class="d-flex justify-content-evenly">
+
+                {{-- liker un commentaire --}}
+                <form action="{{route('articles.like')}}" id="form-js" class="d-inline-flex mx-2">
+                    <div class="text-start m-2">
+                        <div id="count-js">{{$article->likes->count()}} <strong>personne(s) ont réagi(s)</strong> 
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="article-id" value="{{$article->id}}" id="article-id-js">
+                    <button type="submit" style="border-style: none">                            
+                        <i class="bi bi-hand-thumbs-up fs-2"></i>
+                        J'aime
+                    </button>
+                </form>
+                
+
+                <a href="{{route('show',['id'=>$article->id])}}" style="border-style: none">                            
+                    <i class="bi bi-chat fs-2"></i>
+                    Commenter
+                </a>
+
+                <a href="#" style="border-style: none">                            
+                    <i class="bi bi-telephone fs-2"></i>
+                    contacter
+                </a>
+                
+            </div>
+            <hr>
+            
             
         </div>
         

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ArticleproController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterProController;
@@ -72,8 +73,14 @@ Route::post('/users/{user}', [UserController::class, 'update'])->name('users.upd
 
 //DISPLAY ARTICLES ROUTES
 Route::get('/professional', [PublishArticleController::class, 'index']);
+Route::get('article/{id}/show',  [PublishArticleController::class, 'show'])->name('show');
 
+//LIKES
+Route::post('/articles/likes', [PublishArticleController::class, 'liker'])->name('articles.like');
 
+//COMMENTS
+Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::post('/articles/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -43,4 +43,9 @@ class Article extends Model
     public function likes(){
         return $this->hasMany(Like::class);
     }
+
+    public function isLikedByUser(){
+
+        return $this->likes->where('user_id', auth()->user()->id)->isEmpty() ? false: true;
+    }
 }
