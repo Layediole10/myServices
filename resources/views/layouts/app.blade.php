@@ -92,9 +92,12 @@
                             <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="130px" height="150px"  class="rounded-circle py-3">
                         @endif
                             <h6>{{Auth::user()->name}}</h6>
-                            <h5>
+                            <div>
+                                <a href="{{route('categories.index')}}">Mes demandes</a>
+                            </div>
+                            <div>
                                 <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
-                            </h5>
+                            </div>
                         {{-- @yield('profil') --}}
                     @endauth
                 </div>

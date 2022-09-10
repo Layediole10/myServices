@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleproController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterProController;
@@ -63,6 +65,14 @@ Route::middleware(['auth', 'professional'])->group(function(){
     Route::get('/professional/{professional}/edit', [RegisterProController::class, 'edit'])->name('professional.edit');
     Route::post('/professional/{professional}', [RegisterProController::class, 'update'])->name('professional.update');
 });
+
+//USERS ROUTES
+// Route::middleware(['auth', 'user'])->group(function(){
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('demandes', DemandeController::class);
+
+// });
 
 Route::get('/professional/create', [RegisterProController::class, 'create'])->name('professional.create');
 Route::post('/professional', [RegisterProController::class, 'store'])->name('professional.store');

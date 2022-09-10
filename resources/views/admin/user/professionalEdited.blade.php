@@ -84,6 +84,10 @@
             </div>
         </div>
     </div>
+
+    <div class="mt-2">
+        <a href="{{url('/professional')}}" class="btn btn-primary">Annuler</a>
+    </div>
 {{-- @endif --}}
 
 @endsection

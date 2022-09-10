@@ -50,12 +50,12 @@
                 {{-- liker un commentaire --}}
                 <form action="{{route('articles.like')}}" id="form-js" class="d-inline-flex mx-2">
                     <div class="text-start m-2">
-                        <div id="count-js">{{$article->likes->count()}} <strong>personne(s) ont réagi(s)</strong> 
+                        <div id="count-js"> <strong>{{$article->likes->count()}}</strong> 
                         </div>
                     </div>
 
                     <input type="hidden" name="article-id" value="{{$article->id}}" id="article-id-js">
-                    <button type="submit" style="border-style: none">                            
+                    <button type="submit" style="border-style: none" id="liker">                            
                         <i class="bi bi-hand-thumbs-up fs-2"></i>
                         J'aime
                     </button>
@@ -81,3 +81,4 @@
     @endforeach
     
 @endsection
+
