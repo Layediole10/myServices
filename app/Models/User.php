@@ -51,8 +51,8 @@ class User extends Authenticatable
         return $this->hasMany(Article::class);
     }
 
-    // public function article(){
-    //     return $this->belongsTo(Article::class);
-    // }
+    public function demandes(){
+        return $this->hasMany(Demande::class);
+    }
 
 }

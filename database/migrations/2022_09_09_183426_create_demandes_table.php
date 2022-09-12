@@ -23,7 +23,9 @@ return new class extends Migration
             $table->date('date_start');
             $table->date('date_end');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('author_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('author_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

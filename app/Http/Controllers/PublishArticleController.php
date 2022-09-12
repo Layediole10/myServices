@@ -16,6 +16,11 @@ class PublishArticleController extends Controller
             'articles'=>$articles,
             'comments'=>$comments,
         ]);
+
+        // return view('components.actuality', [
+        //     'articles'=>$articles,
+        //     'comments'=>$comments,
+        // ]);
         
     }
 

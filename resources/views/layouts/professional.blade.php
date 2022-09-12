@@ -117,7 +117,7 @@
                   @yield('content')
                 </div>
                 <div class="col">
-                  3 of 3
+                  @yield('request')
                 </div>
             </div>  
         </main>

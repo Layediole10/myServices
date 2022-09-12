@@ -98,18 +98,29 @@
                             <div>
                                 <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
                             </div>
-                        {{-- @yield('profil') --}}
                     @endauth
                 </div>
                 
                 <div class="col-8">
-                  @yield('content')
+                   @yield('content') 
+                  
                 </div>
                 <div class="col">
-                  3 of 3
+                    @auth
+                        <div class="text-center bg-primary mt-2">
+                            <h4>Les demandes</h4>
+                            
+                        </div> 
+                    @endauth
+
+                    @yield('request')
                 </div>
             </div>  
         </main>
     </div>
+
+
+
+
 </body>
 </html>

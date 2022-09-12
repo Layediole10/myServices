@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Article, Category, Demande};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Demande;
 
 class DemandeController extends Controller
 {
@@ -12,10 +13,7 @@ class DemandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +39,7 @@ class DemandeController extends Controller
             'content' => 'required|string',
         ]);
 
+        $validate['author_id'] = Auth::user()->id;
         $validate['municipality'] = $request->municipality;
         $validate['district'] = $request->district;
         $validate['category_id'] = $request->category;
@@ -50,7 +49,7 @@ class DemandeController extends Controller
         // dd($validate);
         Demande::create($validate);
 
-        return back();
+        return redirect()->route('home')->with('demande', 'Demande publiée avec succès!');
     }
 
     /**

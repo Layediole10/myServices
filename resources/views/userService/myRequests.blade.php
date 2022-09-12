@@ -16,6 +16,10 @@
                         <label for="category">Catégorie</label>
                         <input type="text" name="category" id="category" value="{{$category->id}}">
                     </div>
+
+                    <div class="card mb-3">
+                        <input type="hidden" name="author_id"  value="{{Auth::user()->id}}">
+                    </div>
             
                     <div class="card mb-3">
                         <label for="title">Donner un titre à votre demande</label>
@@ -43,7 +47,7 @@
 
                     <div class="card mb-3">
                         <label for="district">Votre quartier</label>
-                        <input type="text" name="district" id="district" value="Escale">
+                        <input type="text" name="district" id="district" placeholder="Escale">
                     </div>
             
                 </div>

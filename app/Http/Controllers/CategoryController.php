@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         
-        return view('userService.demande', [
+        return view('userService.myCategories', [
 
             "categories" => $categories,
            
@@ -53,7 +53,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
        
-        return view('userService.occupation',['category'=>$category]);
+        return view('userService.myRequests',['category'=>$category]);
     }
 
     /**

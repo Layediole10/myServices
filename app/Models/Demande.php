@@ -12,6 +12,7 @@ class Demande extends Model
 
     protected $fillable = [
         'category_id',
+        'author_id',
         'title',
         'budget',
         'content',
@@ -23,5 +24,9 @@ class Demande extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class);
     }
 }

@@ -1,7 +1,6 @@
-@extends('layouts.professional')
-@section('title', 'Page d\'accueil')
-@section('content')
-    @foreach ($articles as $article)
+{{-- <div>
+    <h1>Hello</h1>
+    @foreach ($allArticles as $article)
         <div class="text-left w-100 m-5 shadow">
             <div class="d-flex flex-row mb-3">
                 @if ($article->author->photo)
@@ -47,7 +46,7 @@
             <hr>
             <div class="d-flex justify-content-evenly">
 
-               
+                
                 <form action="{{route('articles.like')}}" id="form-js" class="d-inline-flex mx-2">
                     <div class="text-start m-2">
                         <div id="count-js"> <strong>{{$article->likes->count()}}</strong> 
@@ -79,6 +78,17 @@
         </div>
         
     @endforeach
-    
-@endsection
+</div> --}}
 
+<div>
+    @foreach ($myRequests as $req)
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{$req->title}}</</h5>
+                <p class="card-text">{{$req->content}}</</p>
+                <a href="#" class="btn btn-primary">Postuler</a>
+            </div>
+        </div>
+    @endforeach
+</div>
