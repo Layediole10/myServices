@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\{Article, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -84,4 +84,11 @@ class RegisterProController extends Controller
                 }
         }
     }
+
+    public function contact($id){
+        
+        $article = Article::find($id);
+        return view('professional.contactPro', ['article'=> $article]);
+    }
+    
 }

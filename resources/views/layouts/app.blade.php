@@ -13,11 +13,14 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- Icones --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
     <!-- Scripts -->
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body style="background-color: black; color:white">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -81,15 +84,15 @@
             </div>
         </nav>
 
-        <main class="container text-center">
+        <main class="text-center mx-5">
             <div class="row">
                 
                 <div class="col">
                     @auth
                         @if (Auth::user()->photo == null)
-                        <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="130px" height="150px" class="rounded-circle py-3">
+                        <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="90px" height="110px" class="rounded-circle py-3">
                         @else
-                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="130px" height="150px"  class="rounded-circle py-3">
+                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="80px"  class="rounded-circle py-3">
                         @endif
                             <h6>{{Auth::user()->name}}</h6>
                             <div>
@@ -101,26 +104,17 @@
                     @endauth
                 </div>
                 
-                <div class="col-8">
+                <div class="col-10">
                    @yield('content') 
                   
                 </div>
-                <div class="col">
-                    @auth
-                        <div class="text-center bg-primary mt-2">
-                            <h4>Les demandes</h4>
-                            
-                        </div> 
-                    @endauth
-
-                    @yield('request')
-                </div>
+                
             </div>  
         </main>
     </div>
 
 
 
-
+    <script src="{{asset('js/likeArticle.js')}}"></script>
 </body>
 </html>

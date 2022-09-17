@@ -1,4 +1,4 @@
-@extends('layouts.professional')
+@extends('layouts.admin')
 @section('title', 'Page d\'accueil')
 @section('content')
     <div class="row">
@@ -64,12 +64,12 @@
                         </form>
                         
 
-                        <a href="{{route('show',['id'=>$article->id])}}">                            
+                        <a href="{{route('show',['id'=>$article->id])}}" style="border-style: none">                            
                             <i class="bi bi-chat fs-2"></i>
                             Commenter
                         </a>
 
-                        <a href="{{route('contact',['id'=>$article->id])}}">                            
+                        <a href="{{route('contact',['id'=>$article->id])}}" style="border-style: none">                            
                             <i class="bi bi-telephone fs-2"></i>
                             contacter
                         </a>
@@ -120,5 +120,4 @@
     </div>
     
 @endsection
-
 

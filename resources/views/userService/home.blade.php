@@ -1,4 +1,4 @@
-@extends('layouts.professional')
+@extends('layouts.app')
 @section('title', 'Page d\'accueil')
 @section('content')
     <div class="row">
@@ -64,12 +64,12 @@
                         </form>
                         
 
-                        <a href="{{route('show',['id'=>$article->id])}}">                            
+                        <a href="{{route('show',['id'=>$article->id])}}" style="border-style: none">                            
                             <i class="bi bi-chat fs-2"></i>
                             Commenter
                         </a>
 
-                        <a href="{{route('contact',['id'=>$article->id])}}">                            
+                        <a href="{{route('contact',['id'=>$article->id])}}" style="border-style: none">                            
                             <i class="bi bi-telephone fs-2"></i>
                             contacter
                         </a>
@@ -92,7 +92,7 @@
                 <h4>Les demandes</h4>
             </div>
             @foreach ($requests as $req)
-                <div class="card m-2" style="width: 90%; background-color:darkcyan">
+                <div class="card m-2" style="width: 90%; background-color: darkcyan">
                     <div class="d-flex flex-row mb-3">
                         @if ($req->author->photo)
                             <img src="{{asset($req->author->photo)}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">

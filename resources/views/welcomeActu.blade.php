@@ -1,8 +1,8 @@
-@extends('layouts.professional')
+@extends('welcome')
 @section('title', 'Page d\'accueil')
 @section('content')
     <div class="row">
-        <div class="col-8 mx-4">
+        <div class="col-8 mx-4 mt-5">
             @foreach ($articles as $article)
                 <div class="text-left w-100 m-5 shadow border border-secondary">
                     <div class="d-flex flex-row mb-3">
@@ -47,52 +47,34 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="d-flex justify-content-evenly">
-
-                    {{-- LIKE ARTICLE --}}
-                        <form action="{{route('articles.like')}}" id="form-js" class="d-inline-flex mx-2">
-                            <div class="text-start m-2">
-                                <div id="count-js"> <strong>{{$article->likes->count()}}</strong> 
-                                </div>
-                            </div>
-
-                            <input type="hidden" name="article-id" value="{{$article->id}}" id="article-id-js">
-                            <button type="submit" style="border-style: none" id="liker">                            
-                                <i class="bi bi-hand-thumbs-up fs-2"></i>
-                                J'aime
-                            </button>
-                        </form>
-                        
-
-                        <a href="{{route('show',['id'=>$article->id])}}">                            
+                    <div class="d-flex justify-content-evenly">                       
+                        <a href="{{url('/login')}}">                            
                             <i class="bi bi-chat fs-2"></i>
                             Commenter
                         </a>
 
-                        <a href="{{route('contact',['id'=>$article->id])}}">                            
+                        <a href="{{url('/login')}}">                            
                             <i class="bi bi-telephone fs-2"></i>
                             contacter
                         </a>
                         
                     </div>
-                    <hr>
-                    
-                    
+                    <hr> 
                 </div>
                 
             @endforeach
         </div>
-        <div align="center" class="col mt-5">
+        <div class="demande col position-fixed w-25 mt-5 top-25 end-0">
             @if (session('demande'))
                 <div class="alert alert-success">
                     {{session('demande')}}
                 </div>
             @endif
-            <div class="col bg-primary">
+            <div class="col bg-primary mt-5">
                 <h4>Les demandes</h4>
             </div>
             @foreach ($requests as $req)
-                <div class="card m-2" style="width: 90%; background-color:darkcyan">
+                <div class="card m-2" style="width: 100%; background-color:darkcyan">
                     <div class="d-flex flex-row mb-3">
                         @if ($req->author->photo)
                             <img src="{{asset($req->author->photo)}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
@@ -109,7 +91,7 @@
                         </div>
                         <hr>
                         <p class="card-text">{{$req->content}}</</p><hr>
-                        <a href="#" class="btn btn-primary">Postuler</a>
+                        <a href="{{url('/login')}}" class="btn btn-primary">Postuler</a>
                     </div>
                 </div>
             @endforeach
@@ -120,5 +102,4 @@
     </div>
     
 @endsection
-
 

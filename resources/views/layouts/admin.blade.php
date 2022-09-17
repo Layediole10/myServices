@@ -23,7 +23,7 @@
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body style="background-color: black; color:white">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -79,7 +79,7 @@
             </div>
         </nav>
         <x-navbar/>
-        <main class=" container-fluid">
+        {{-- <main class=" container-fluid">
             <div class="row">
                 <x-sidebar/> 
                 <div class="col">
@@ -88,9 +88,36 @@
             
                  
             </div>
-        </main>
+        </main> --}}
     </div>
+    <main class="text-center mx-5">
+        <div class="row">
+            
+            <div class="col">
+                @auth
+                    @if (Auth::user()->photo == null)
+                    <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="90px" height="110px" class="rounded-circle py-3">
+                    @else
+                        <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="80px"  class="rounded-circle py-3">
+                    @endif
+                        <h6>{{Auth::user()->name}}</h6>
+                        
+                        <div>
+                            <a href="#">Gérer mon compte</a>
+                        </div>
+                @endauth
+                <x-sidebar/>
+            </div>
+            
+            <div class="col-10">
+               @yield('content') 
+              
+            </div>
 
+        </div>  
+    </main>
     
+
+    <script src="{{asset('js/likeArticle.js')}}"></script>
 </body>
 </html>

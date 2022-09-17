@@ -49,7 +49,7 @@ class DemandeController extends Controller
         // dd($validate);
         Demande::create($validate);
 
-        return redirect()->route('home')->with('demande', 'Demande publiée avec succès!');
+        return redirect('/home')->with('demande', 'Demande publiée avec succès!');
     }
 
     /**

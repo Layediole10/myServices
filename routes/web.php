@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterProController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\PublishArticleController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ use App\Http\Controllers\PublishArticleController;
 Route::get('/', function (){
     return view('welcome');
 });
+Route::get('/', [WelcomeController::class, 'welcome']);
+//LIKES
+Route::post('/articles/likes', [WelcomeController::class, 'liker'])->name('articles.like');
 
 Route::get('/registration', function (){
     return view('sign');
@@ -55,6 +59,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class)->except(['edit', 'update']);
     Route::get('/search', [UserController::class, 'search'])->name('users.search');
     Route::get('users/{id}/view', [UserController::class, 'view'])->name('users.view');
+
+    //ACTUALITY
+    Route::get('/admin', [AdminController::class, 'actualityAdmin']);
+
+    //LIKES
+    Route::post('/articles/likes', [AdminController::class, 'liker'])->name('articles.like');
+
+    Route::get('/article/{id}', [AdminController::class, 'contact'])->name('contact');
 });
 
 //PROFESSIONAL ROUTE
@@ -64,6 +76,9 @@ Route::middleware(['auth', 'professional'])->group(function(){
     Route::post('/professional-create-article',[ArticleproController::class, 'store'])->name('articlepro.store');
     Route::get('/professional/{professional}/edit', [RegisterProController::class, 'edit'])->name('professional.edit');
     Route::post('/professional/{professional}', [RegisterProController::class, 'update'])->name('professional.update');
+
+    Route::get('/article/{id}', [RegisterProController::class, 'contact'])->name('contact');
+    
 });
 
 //USERS ROUTES
@@ -81,6 +96,7 @@ Route::post('/professional', [RegisterProController::class, 'store'])->name('pro
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
+
 //DISPLAY ARTICLES ROUTES
 Route::get('/professional', [PublishArticleController::class, 'index']);
 Route::get('article/{id}/show',  [PublishArticleController::class, 'show'])->name('show');
@@ -93,6 +109,7 @@ Route::get('/comments', [CommentController::class, 'index'])->name('comments.ind
 Route::post('/articles/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home'); 
+    Route::get('/article/{id}', [HomeController::class, 'contact'])->name('contact');
 });
 

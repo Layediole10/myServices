@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Article, Comment, Like};
+use App\Models\{Article, Comment, Demande, Like};
 use Illuminate\Http\Request;
 
 class PublishArticleController extends Controller
 {
     public function index(){
 
+        $requests = Demande::orderBy('created_at', 'DESC')->simplePaginate(1);
         $articles = Article::orderBy('created_at', 'DESC')->get();
         $comments = Comment::all();
-        
+        // dd($requests);
         return view('professional.homePro', [
+            'requests'=>$requests,
             'articles'=>$articles,
             'comments'=>$comments,
         ]);
-
-        // return view('components.actuality', [
-        //     'articles'=>$articles,
-        //     'comments'=>$comments,
-        // ]);
         
     }
+
 
     public function liker(){
 
@@ -64,4 +62,5 @@ class PublishArticleController extends Controller
         ]); 
         
     }
+
 }
