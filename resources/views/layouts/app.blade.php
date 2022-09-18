@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -54,13 +54,10 @@
                             @endif
                         @else
                                 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __("Devis") }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/home')}}">{{ __("Home") }}</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __("Missions") }}</a>
-                        </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -88,11 +85,17 @@
             <div class="row">
                 
                 <div class="col">
+                    @if (session('compteUpdate'))
+                        <div class="alert alert-success">
+                            {{session('compteUpdate')}}
+                        </div>
+                    @endif
+
                     @auth
                         @if (Auth::user()->photo == null)
                         <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="90px" height="110px" class="rounded-circle py-3">
                         @else
-                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="80px"  class="rounded-circle py-3">
+                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="100px"  class="rounded-circle py-3">
                         @endif
                             <h6>{{Auth::user()->name}}</h6>
                             <div>

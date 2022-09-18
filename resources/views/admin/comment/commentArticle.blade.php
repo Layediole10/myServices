@@ -1,7 +1,9 @@
 @extends('layouts.professional')
 @section('title', 'comment-article')
 @section('content')
-    <div class="text-left w-100 m-5 shadow p-2">
+
+    <div class="row">
+       <div class="text-left shadow col-8 mx-4 border border-secondary">
         <div class="d-flex flex-row mb-3">
             @if ($article->author->photo)
                 <img src="{{asset($article->author->photo)}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
@@ -49,7 +51,7 @@
             {{-- liker un commentaire --}}
             <form action="{{route('articles.like')}}" id="form-js" class="d-inline-flex mx-2">
                 <div class="text-start m-2">
-                    <div id="count-js">{{$article->likes->count()}} <strong>personne(s) ont réagi(s)</strong> 
+                    <div id="count-js">{{$article->likes->count()}} 
                     </div>
                 </div>
 
@@ -73,7 +75,7 @@
             
         </div>
         <hr>
-        <div class="container text-left w-50 my-2">
+        <div class="container text-left w-75 my-2">
             <h5>Commentaires</h5>
 
             <form action="{{route('comments.store',['id'=>$article->id])}}" method="post">
@@ -102,12 +104,12 @@
                 <button class="btn btn-md btn-primary"> <i class="bi bi-plus-circle my-2"></i> Save</button>
             </form>
 
-            <div class="container m-3 ">
+            <div class="container m-3 text-dark">
                 @foreach ($comments as $comment)
                     <div class="mb-5 bg-white p-3 rounded-sm text-left w-75 shadow">
                         <div class="flex">
                             {{-- Avatar --}}
-                            <div class="mr-3 flex flex-col justify-center">
+                            <div class="mx-3 flex flex-col justify-center">
                                 
                                 <div class="d-flex flex-row mb-3">
                                     @if ($article->author->photo)
@@ -139,8 +141,14 @@
             
         </div>
 
+        </div>
+
+        <div class="col">
+        </div> 
+    
     </div>
-    <div>
+    
+    <div class="text-center m-3">
         <a href="{{url('/professional')}}" class="btn btn-primary">Retour</a>
     </div>
 @endsection

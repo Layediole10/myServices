@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Article, Comment, Demande, Like};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\{Article, Comment, Demande, Like, User};
 
 class AdminController extends Controller
 {
@@ -66,5 +67,48 @@ class AdminController extends Controller
         
         $article = Article::find($id);
         return view('admin.contactAdmin', ['article'=> $article]);
+    }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return  view('admin.adminEdited', ['user'=>$user]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        if (Auth::user()->id == $id) {
+            $user = User::find($id);
+            $validate = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255' ],       
+                'contact' => 'required|string',
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            ]);
+
+            // dd($path);
+            $register = $validate;
+            $register['name'] = $request->name;
+            $register['email'] = $request->email;            
+            $register['contact'] = $request->contact;
+            
+            
+            if ($request->file('photo')) {
+                $photo = $request->file('photo');
+                $photoName = time().'.'.$photo->getClientOriginalExtension();
+                $photo->move(public_path('profile'), $photoName);
+                $path = '/profile/'.$photoName;
+                $register['photo'] = $path;
+            }
+    
+            $user->update($register);
+        
+            if ($user) {
+                return redirect('/admin')->with('compteUpdate', 'Votre compte a été bien mis à jour!');
+            
+             }else{
+                 return back()->with("errorRegister","registration failed")->withInput();
+                }
+        }
     }
 }

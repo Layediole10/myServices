@@ -21,7 +21,7 @@
     </head>
     <body style="background-color: black; color:white">
         
-        <div class="text-left w-100 shadow position-fixed" style="background-color: rgb(13, 5, 100); color:white">
+        <div class="text-left w-100 shadow position-fixed" style="background-color: rgb(211, 209, 232); color:white">
             
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block home">

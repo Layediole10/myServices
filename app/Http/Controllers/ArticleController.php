@@ -94,7 +94,7 @@ class ArticleController extends Controller
             }
         }
         
-        return view('admin.article.confirm');  
+        return redirect()->route('articles.index')->with('articleCreated', 'Article crée avec succès!');  
 
     }
 

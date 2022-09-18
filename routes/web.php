@@ -45,6 +45,8 @@ Auth::routes(['verify' => true]);
 //ADMIN ROUTE
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update');
 
     //ARTICLES ROUTES
     Route::prefix('admin')->group(function () {
@@ -78,7 +80,7 @@ Route::middleware(['auth', 'professional'])->group(function(){
     Route::post('/professional/{professional}', [RegisterProController::class, 'update'])->name('professional.update');
 
     Route::get('/article/{id}', [RegisterProController::class, 'contact'])->name('contact');
-    
+    Route::get('/professional-demande/{id}', [DemandeController::class, 'meContacter'])->name('demande.contacter');
 });
 
 //USERS ROUTES
@@ -111,5 +113,6 @@ Route::post('/articles/{id}/comments', [CommentController::class, 'store'])->nam
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home'); 
     Route::get('/article/{id}', [HomeController::class, 'contact'])->name('contact');
+    Route::get('/demande/{id}', [HomeController::class, 'postuler'])->name('postuler');
 });
 

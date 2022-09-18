@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="container p-4">
+    <div class="col-8 m-4 text-black">
                     
         <form action="{{route('demandes.store')}}" method="post">
             @csrf

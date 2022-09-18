@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -18,7 +18,7 @@
                     <div class="card-header">{{ __('Mettre à jour les données du Demandeur') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.update', ['user'=>$user->id]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.update', ['admin'=>$user->id]) }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">

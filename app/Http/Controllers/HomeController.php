@@ -71,4 +71,10 @@ class HomeController extends Controller
         return view('userService.contact', ['article'=> $article]);
     }
 
+    public function postuler($id){
+        
+        $demande = Demande::find($id);
+        return view('userService.postuler', ['demande'=> $demande]);
+    }
+
 }

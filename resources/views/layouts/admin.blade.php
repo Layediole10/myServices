@@ -94,16 +94,22 @@
         <div class="row">
             
             <div class="col">
+                    @if (session('compteUpdate'))
+                        <div class="alert alert-success">
+                            {{session('compteUpdate')}}
+                        </div>
+                    @endif
+
                 @auth
                     @if (Auth::user()->photo == null)
                     <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="90px" height="110px" class="rounded-circle py-3">
                     @else
-                        <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="80px"  class="rounded-circle py-3">
+                        <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="100px"  class="rounded-circle py-3">
                     @endif
                         <h6>{{Auth::user()->name}}</h6>
                         
                         <div>
-                            <a href="#">Gérer mon compte</a>
+                            <a href="{{route('admin.edit',['admin'=>Auth::user()->id])}}">Gérer mon compte</a>
                         </div>
                 @endauth
                 <x-sidebar/>

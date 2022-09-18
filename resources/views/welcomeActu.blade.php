@@ -64,41 +64,72 @@
                 
             @endforeach
         </div>
-        <div class="demande col position-fixed w-25 mt-5 top-25 end-0">
+        
+        <div align="center" class="col position-fixed w-25 mt-5 top-25 end-0 text-black">
             @if (session('demande'))
                 <div class="alert alert-success">
                     {{session('demande')}}
                 </div>
             @endif
-            <div class="col bg-primary mt-5">
+            <div class="col mt-5 demande">
                 <h4>Les demandes</h4>
             </div>
-            @foreach ($requests as $req)
-                <div class="card m-2" style="width: 100%; background-color:darkcyan">
-                    <div class="d-flex flex-row mb-3">
-                        @if ($req->author->photo)
-                            <img src="{{asset($req->author->photo)}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
-                            @else
-                                <img src="{{asset('avatar/avatar.png')}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
-                        @endif   
-                        <div>
-                            <p>{{$req->author->name}}</p>
-                        </div>
-                    </div><hr>
-                    <div class="card-body">
-                        <div>
-                            <h5 class="card-title">{{$req->title}}</</h5>
-                        </div>
-                        <hr>
-                        <p class="card-text">{{$req->content}}</</p><hr>
-                        <a href="{{url('/login')}}" class="btn btn-primary">Postuler</a>
-                    </div>
-                </div>
-            @endforeach
-            <div class="text-center mx-5">
+            <div class="container mx-5 mt-3">
                 {{$requests->links()}}
             </div>
+            @foreach ($requests as $req)
+                
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        @if ($req->author->photo)
+                            <img src="{{asset($req->author->photo)}}" alt="img"  class="card-img-top">
+                            @else
+                                <img src="{{asset('avatar/avatar.png')}}" alt="img"  class="card-img-top">
+                        @endif   
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{$req->author->name}}</h5><hr>
+                        <h6 class="card-title">{{$req->title}}</h6>
+                        <p class="card-text">{{$req->content}}</p>
+                        <a href="{{url('/login')}}" class="btn">Me contacter</a>
+                    </div>
+            @endforeach
+            
         </div>
+        
+    </div>
+
+    <style>
+        .card {
+            margin-top: 2em;
+            padding: 1.5em 0.5em 0.5em;
+            border-radius: 2em;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 50%;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .card .card-title {
+            font-weight: 700;
+            font-size: 1.5em;
+        }
+        .card .btn, .demande{
+            border-radius: 2em;
+            background-color: teal;
+            color: #000000;
+            padding: 0.5em 1.5em;
+        }
+        .card .btn:hover {
+            background-color: rgba(43, 7, 164, 0.7);
+            color: #000000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
     </div>
     
 @endsection

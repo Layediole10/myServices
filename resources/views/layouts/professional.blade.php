@@ -53,6 +53,15 @@
                                 </li>
                             @endif
                         @else
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/professional')}}">{{ __("Home") }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">{{ __("Missions") }}</a>
+                            </li>
+                            
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -104,7 +113,7 @@
                     @if (Auth::user()->photo == null)
                         <img src="{{asset('avatar/avatar.png')}}" alt="{{Auth::user()->name}}" width="90px" height="110px" class="rounded-circle m-2">
                         @else
-                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="80px"  class="rounded-circle m-2">
+                            <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="90px"  class="rounded-circle m-2">
                     @endif
                     
                   <h5>{{Auth::user()->name}}</h5>
