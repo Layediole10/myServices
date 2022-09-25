@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Page d\'accueil')
 @section('content')
+
     <div class="row">
         <div class="col-8 mx-4">
             @foreach ($articles as $article)
@@ -91,6 +92,7 @@
             <div class="col demande">
                 <h4>Les demandes</h4>
             </div>
+            {{$requests->links()}}
             @foreach ($requests as $req)
                 
                 <div class="card" style="width: 18rem;">
@@ -111,7 +113,7 @@
             
         </div>
         <div class="container mx-5 mt-3">
-            {{$requests->links()}}
+            
         </div>
     </div>
 

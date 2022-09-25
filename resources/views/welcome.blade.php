@@ -19,25 +19,42 @@
         @viteReactRefresh
         @vite(['resources/js/app.js', 'resources/css/app.css'])
     </head>
-    <body style="background-color: black; color:white">
+    <body>
         
-        <div class="text-left w-100 shadow position-fixed" style="background-color: rgb(211, 209, 232); color:white">
-            
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block home">
-                    
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="javascript:void(0)">EliteVision</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div class="collapse navbar-collapse" id="mynavbar">
+                @if (Route::has('login'))
+                <ul class="navbar-nav me-auto">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Accueil</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">s'identifier</a>
-
-                        @if (Route::has('signin'))
-                            <a href="{{ route('signin') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">s'inscrire</a>
-                        @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/home') }}">Accueil</a>
+                        </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">S'identifier</a>
+                            </li>
+                            @if (Route::has('signin'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('signin') }}">S'inscrire</a>
+                                </li>
+                            @endif
                     @endauth
-                </div>
-            @endif
-        </div>
+                
+                </ul>
+                @endif
+                <form class="d-flex">
+                  <input class="form-control me-2" type="text" placeholder="Search">
+                  <button class="btn btn-primary" type="button">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
         
         <main class="text-center">
             <div class="row">
