@@ -61,69 +61,105 @@
                     J'aime
                 </button>
             </form>
-            
 
-            <a href="#" style="border-style: none">                            
-                <i class="bi bi-chat fs-2"></i>
-                Commenter
-            </a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@commenter"><i class="bi bi-chat fs-2"></i> commenter</button>
 
-            <a href="#" style="border-style: none">                            
-                <i class="bi bi-telephone fs-2"></i>
-                contacter
-            </a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contacter" data-bs-whatever="@contacter"><i class="bi bi-telephone fs-2"></i> contacter</button>
+
             
         </div>
         <hr>
         <div class="container text-left w-75 my-2">
             <h5>Commentaires</h5>
 
-            <form action="{{route('comments.store',['id'=>$article->id])}}" method="post">
-                @csrf
-                <div class="row my-2 p-2">
-                    <div class="col">
-                        <div class="form-group pb-1">
-                            <input type="hidden" class="form-control" name="name" placeholder="Nom et Prénom" value="{{Auth::user()->name}}">
-                        </div>
-            
-                        <div class="form-group pb-1">
-                            <input type="hidden" class="form-control" name="email" placeholder="email" value="{{Auth::user()->email}}">
-                        </div>
-                    </div>
-                </div>
+            {{-- ----------------------modal---------------------- --}}
 
-                <div class="row my-2">
-                    <div class="form-floating">
-                        <textarea class="form-control" name="content" placeholder="Leave a comment here"></textarea>                            
+            {{-- popup contact professional --}}
+            <div class="modal fade" id="contacter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header bg-primary">
+                        <div class="modal-title" id="exampleModalLabel">
+                            <h4>Contacter {{$article->author->name}}</h4>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                       
+                            <div class="card m-2">
+                                <div class="card-body">
+                                    <a href="tel:{{$article->author->contact}}">
+                                        <i class="bi bi-telephone fs-2"></i>
+                                        Appeler
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <a href="mailto:{{$article->author->email}}">
+                                        <i class="bi bi-envelope fs-2"></i>
+                                        Envoyer email
+                                    </a>
+                                </div>
+                            </div>
+                      </div>
+                      
                     </div>
-                    <div class="form-group pb-1">
-                        <input type="hidden" class="form-control" name="article_id" placeholder="last name" value={{$article->id}}>
-                    </div>
-                </div>
+                  </div>
+            </div>
 
-                <button class="btn btn-md btn-primary"> <i class="bi bi-plus-circle my-2"></i> Save</button>
-            </form>
+            {{-- popup comment article --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Nouveau commentaire</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('comments.store',['id'=>$article->id])}}" method="post">
+                            @csrf
+                            <div class="form-group pb-1">
+                                <input type="hidden" class="form-control" name="article_id" placeholder="last name" value={{$article->id}}>
+                            </div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Commentaire:</label>
+                          <textarea class="form-control" id="message-text" name="content"></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                      </form>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              {{-- --------------------end modal---------------------- --}}
 
             <div class="container m-3 text-dark">
                 @foreach ($comments as $comment)
                     <div class="mb-5 bg-white p-3 rounded-sm text-left w-75 shadow">
                         <div class="flex">
-                            {{-- Avatar --}}
-                            <div class="mx-3 flex flex-col justify-center">
+                            
+                            <div class="mx-3 flex ">
                                 
                                 <div class="d-flex flex-row mb-3">
-                                    @if ($article->author->photo)
-                                        <img src="{{asset($article->author->photo)}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
+                                    @if ($comment)
+                                        <img src="{{$comment->author->photo}}" alt="{{$comment->name}}" width="40px" height="40px"  class="rounded-circle mx-1">
+                                        
                                         @else
-                                            <img src="{{asset('avatar/avatar.png')}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
+                                            <img src="{{asset('avatar/avatar.png')}}" alt="{{$comment->name}}" width="40px" height="40px" class="rounded-circle mx-1">
+                                        
                                     @endif   
                                     <div  class="mt-3">
-                                        <strong>{{$article->author->name}}</strong>
+                                        <strong>{{$comment->name}}</strong>
                                     </div>
                                     
                                 </div>
                             </div>
-                            {{-- Avatar --}}
+                           
 
                         </div>
 

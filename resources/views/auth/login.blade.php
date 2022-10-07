@@ -53,6 +53,7 @@
 
         background-image: url('avatar/nature.jpg');
         background-size: 100% 100%;
+        opacity: 0.8;
     }
   </style>
 @endsection

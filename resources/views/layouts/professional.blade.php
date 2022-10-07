@@ -12,15 +12,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/professional.css')}}">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!-- Scripts -->
+
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
+    
     <div id="app">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
@@ -85,7 +89,7 @@
               </div>
             </div>
         </nav>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom text-black">
             <h1 class="h2">Page d'un Professionel</h1>
             
             <div class="btn-toolbar mb-2 mb-md-0">
@@ -105,7 +109,7 @@
             <div class="row">
                 <div class="col">
                     @if (session('compteUpdate'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" id="alert">
                             {{session('compteUpdate')}}
                         </div>
                     @endif
@@ -116,7 +120,7 @@
                             <img src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}" width="80px" height="80px"  class="rounded-circle my-2">
                     @endif
                     
-                  <h5>{{Auth::user()->name}}</h5>
+                  <h5 class="text-black">{{Auth::user()->name}}</h5>
                   <h5>
                     <a href="{{route('professional.edit',['professional'=>Auth::user()->id])}}">Gérer mon compte</a>
                   </h5>
@@ -131,5 +135,16 @@
 
 
     <script src="{{asset('js/likeArticle.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $("document").ready(function(){
+            setTimeout(() => {
+                $("#alert").remove();
+            }, 3000);
+        })
+    </script>
 </body>
 </html>

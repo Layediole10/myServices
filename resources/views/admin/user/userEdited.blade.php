@@ -1,92 +1,84 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+<form method="POST" action="{{ route('professional.update', ['professional'=>$user->id]) }}" enctype="multipart/form-data" class="form-horizontal" role="form">
+@csrf   
+<div class="container-xl px-4 mt-4">
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <div class="container text-black">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Mettre à jour les données du Demandeur') }}</div>
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('users.update', ['user'=>$user->id]) }}" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom et Prénom') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus value="{{$user->name}}">
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Adresse Email') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" value="{{$user->email}}">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="contact" class="col-md-4 col-form-label text-md-end">{{ __('Votre Contact') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="contact" type="tel" class="form-control @error('contact') is-invalid @enderror" name="contact" required autocomplete="contact" placeholder="(+221)7XXXXXXX" value="{{$user->contact}}">
-
-                                    @error('contact')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('Modifier Image') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="photo" type="file" class="form-control" name="photo">
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Modifier') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+<div class="row">
+    <div class="col-xl-4">
+        <!-- Profile picture card-->
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header">Image du Profil</div>
+            <div class="card-body text-center">
+                
+                    <div class="text-center">
+                    <img src="{{$user->photo}}" class="avatar img-circle" alt="avatar">
+                    <h6>Modifier l'image</h6>
+                    
+                    <input type="file" class="form-control" name="photo">
                     </div>
-                </div>
+                
             </div>
         </div>
     </div>
-    <div class="mt-2">
-        <a href="{{url('/home')}}" class="btn btn-primary">Annuler</a>
+    <div class="col-xl-8">
+        <!-- Account details card-->
+        <div class="card mb-4">
+            <div class="card-header">Détails du compte</div>
+            <div class="card-body">
+                
+                    <!-- Form Group (username)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputUsername">Prénom & Nom</label>
+                        <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="{{$user->name}}" name="name">
+                    </div>
+                    
+                    <!-- Form Group (email address)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                        <input class="form-control" id="inputEmailAddress" type="email" value="{{$user->email}}" name="email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputPhone">Numéro de téléphone</label>
+                        <input class="form-control" id="inputPhone" type="tel" value="{{$user->contact}}" name="contact">
+                    </div>
+                    
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">Modifier</button>
+                
+            </div>
+        </div>
     </div>
-{{-- @endif --}}
+</div>
+</div>
+</form>
+
+<style>
+body { 
+        margin-top:20px;
+        background: url('https://bootdey.com/img/Content/bg1.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        color: #000;
+    }
+.avatar{
+border-radius: 50%;
+width:200px;
+height:200px;
+}	
+</style>
 
 @endsection

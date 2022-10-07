@@ -47,6 +47,41 @@
                         </div>
                     </div>
                     <hr>
+                    {{-- --------------------like immages----------------------- --}}
+                    <div class="timeline">
+                        <div class="widget-footer d-flex align-items-center">
+                            <div class="col-xl-8 col-md-8 col-7 no-padding d-flex justify-content-start">
+                                <div class="users-like">
+                                    <a href="#">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid rounded-circle" alt="...">
+                                    </a>
+                                    <a href="#">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-fluid rounded-circle" alt="...">
+                                    </a>
+                                    <a href="#">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-fluid rounded-circle" alt="...">
+                                    </a>
+                                    <a href="#">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="img-fluid rounded-circle" alt="...">
+                                    </a>
+                                    <a href="#">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid rounded-circle" alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4 col-5 no-padding d-flex justify-content-end">
+                                <div class="meta">
+                                    <ul>
+                                        <li><a href="#"><i class="la la-comment"></i><span class="numb">12</span></a></li>
+                                        <li><a href="#"><i class="la la-heart"></i><span class="numb">30</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{-- ---------------------end like images----------------------- --}}
+
                     <div class="d-flex justify-content-evenly">                       
                         <a href="{{url('/login')}}">                            
                             <i class="bi bi-chat fs-2"></i>
@@ -129,8 +164,94 @@
             color: #000000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+
+
+        /* ------------------------------------------ */
+        body{
+    margin-top:20px;
+    background:#eee;
+}
+
+.timeline {
+    width: 100%;
+    position: relative;
+    padding: 1px 0;
+    list-style: none;
+    font-weight: 500
+}
+
+
+.timeline .widget-body {
+    padding: 1rem 1.4rem
+}
+
+.timeline .widget-footer {
+    border-top: 1px solid #eee;
+    margin: 0 1.4rem;
+    padding: 1.07rem 0
+}
+
+.timeline .users-like {
+    padding: 0
+}
+
+.timeline .users-like a {
+    margin: 0 -1.6rem 0 0;
+    transition: all 0.4s ease
+}
+
+.timeline .users-like a:hover {
+    margin-right: -.3rem
+}
+
+.timeline .users-like img {
+    width: 40px;
+    border: .25rem solid #fff
+}
+
+.timeline .users-like a.view-more {
+    background: #5d5386;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border: .25rem solid #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+    font-size: .85rem;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 0
+}
+
+.timeline .widget-footer .meta li {
+    display: inline-block;
+    margin-right: .5rem
+}
+
+.timeline .widget-footer .meta li:last-child {
+    margin-right: 0
+}
+
+.timeline .widget-footer .meta li a {
+    color: rgba(52, 40, 104, .3)
+}
+
+.timeline .widget-footer .meta li a:hover {
+    color: rgba(52, 40, 104, .9)
+}
+
+.timeline .widget-footer .meta li i {
+    font-size: 1.8rem;
+    vertical-align: middle;
+    margin-right: .3rem
+}
+
+.timeline .widget-footer .meta li .numb {
+    vertical-align: middle
+}
+        
     </style>
     </div>
-    
+
 @endsection
 

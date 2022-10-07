@@ -14,10 +14,15 @@ class Comment extends Model
         'email',
         'content',
         'article_id',
+        'author_id',
     ];
 
 
     public function article(){
         return $this->belongsTo(Article::class);
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class);
     }
 }

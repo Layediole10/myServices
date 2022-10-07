@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Article, User};
+use App\Models\{Article, Demande, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -73,7 +73,8 @@ class RegisterProController extends Controller
                 $path = '/profile/'.$photoName;
                 $register['photo'] = $path;
             }
-    
+            
+            // dd($register);
             $user->update($register);
         
             if ($user) {

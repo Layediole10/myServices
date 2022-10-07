@@ -12,6 +12,7 @@ class PublishArticleController extends Controller
         $requests = Demande::orderBy('created_at', 'DESC')->simplePaginate(1);
         $articles = Article::orderBy('created_at', 'DESC')->get();
         $comments = Comment::orderBy('created_at', 'DESC')->get();
+        
         // dd($requests);
         return view('professional.homePro', [
             'requests'=>$requests,
@@ -20,6 +21,12 @@ class PublishArticleController extends Controller
         ]);
         
     }
+
+    // public function contact($id){
+        
+    //     $contactArt = Article::find($id);
+    //     return view('professional.contactPro', ['contactArt'=> $contactArt]);
+    // }
 
 
     public function liker(){

@@ -2,9 +2,9 @@
 @section('title', 'Page d\'accueil')
 @section('content')
     <div class="row">
-        <div class="col-8 mx-4">
+        <div class="col-8">
             @foreach ($articles as $article)
-                <div class="text-left w-100 m-5 shadow border border-secondary">
+                <div class="text-left shadow border border-secondary">
                     <div class="d-flex flex-row mb-3">
                         @if ($article->author->photo)
                             <img src="{{asset($article->author->photo)}}" alt="img" width="50px" height="50px" class="rounded-circle m-2">
@@ -82,18 +82,18 @@
                 
             @endforeach
         </div>
-        <div align="center" class="col position-fixed w-25 mt-5 top-25 end-0 text-black">
+        <div class="col">
             @if (session('demande'))
                 <div class="alert alert-success">
                     {{session('demande')}}
                 </div>
             @endif
-            <div class="col demande">
+            <div class="col demande text-center">
                 <h4>Les demandes</h4>
             </div>
             @foreach ($requests as $req)
                 
-                <div class="card" style="width: 18rem;">
+                <div class="card mx-3" style="width: 18rem;">
                     <div class="card-body">
                         @if ($req->author->photo)
                             <img src="{{asset($req->author->photo)}}" alt="img"  class="card-img-top">
@@ -136,13 +136,13 @@
         }
         .card .btn, .demande{
             border-radius: 2em;
-            background-color: teal;
+            background-color: rgb(0, 42, 255);
             color: #000000;
             padding: 0.5em 1.5em;
         }
         .card .btn:hover {
-            background-color: rgba(43, 7, 164, 0.7);
-            color: #000000;
+            background-color:#000000 ;
+            color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
     </style>

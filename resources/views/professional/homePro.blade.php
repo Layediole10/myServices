@@ -47,8 +47,8 @@
                         </div>
                     </div>
                     <hr>
+                    
                     <div class="d-flex justify-content-evenly">
-
                     {{-- LIKE ARTICLE --}}
                         <form action="{{route('articles.like')}}" id="form-js" class="d-inline-flex mx-2">
                             <div class="text-start m-2">
@@ -68,14 +68,53 @@
                             <i class="bi bi-chat fs-2"></i>
                             Commenter
                         </a>
+                        
 
-                        <a href="{{route('contact',['id'=>$article->id])}}">                            
+                        {{-- <a href="{{route('show',['id'=>$article->id])}}">                            
                             <i class="bi bi-telephone fs-2"></i>
                             contacter
-                        </a>
+                        </a> --}}
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contacter" data-bs-whatever="@contacter">
+                            <i class="bi bi-telephone fs-2"></i> contacter
+                        </button>
+                        
                         
                     </div>
                     <hr>
+
+                    {{-- popup contact professional --}}
+            <div class="modal fade" id="contacter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header bg-primary">
+                        <div class="modal-title" id="exampleModalLabel">
+                            <h4>Contacter {{$article->author->name}}</h4>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                       
+                            <div class="card m-2">
+                                <div class="card-body">
+                                    <a href="tel:{{$article->author->contact}}">
+                                        <i class="bi bi-telephone fs-2"></i>
+                                        Appeler
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <a href="mailto:{{$article->author->email}}">
+                                        <i class="bi bi-envelope fs-2"></i>
+                                        Envoyer email
+                                    </a>
+                                </div>
+                            </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+            </div>
+            {{-- ----------------------------end popup------------------------------- --}}
                     
                     
                 </div>
@@ -146,6 +185,90 @@
             color: #000000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* ------------------------------------------ */
+        body{
+    margin-top:20px;
+    background:#eee;
+}
+
+.timeline {
+    width: 100%;
+    position: relative;
+    padding: 1px 0;
+    list-style: none;
+    font-weight: 500
+}
+
+
+.timeline .widget-body {
+    padding: 1rem 1.4rem
+}
+
+.timeline .widget-footer {
+    border-top: 1px solid #eee;
+    margin: 0 1.4rem;
+    padding: 1.07rem 0
+}
+
+.timeline .users-like {
+    padding: 0
+}
+
+.timeline .users-like a {
+    margin: 0 -1.6rem 0 0;
+    transition: all 0.4s ease
+}
+
+.timeline .users-like a:hover {
+    margin-right: -.3rem
+}
+
+.timeline .users-like img {
+    width: 40px;
+    border: .25rem solid #fff
+}
+
+.timeline .users-like a.view-more {
+    background: #5d5386;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border: .25rem solid #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+    font-size: .85rem;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 0
+}
+
+.timeline .widget-footer .meta li {
+    display: inline-block;
+    margin-right: .5rem
+}
+
+.timeline .widget-footer .meta li:last-child {
+    margin-right: 0
+}
+
+.timeline .widget-footer .meta li a {
+    color: rgba(52, 40, 104, .3)
+}
+
+.timeline .widget-footer .meta li a:hover {
+    color: rgba(52, 40, 104, .9)
+}
+
+.timeline .widget-footer .meta li i {
+    font-size: 1.8rem;
+    vertical-align: middle;
+    margin-right: .3rem
+}
+
+.timeline .widget-footer .meta li .numb {
+    vertical-align: middle
+}
     </style>
     </div>
     

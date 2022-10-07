@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->mediumText('content');
+            $table->unsignedBigInteger('author_id')->nullable();
+            $table->foreign('author_id')->references('id')->on('users');
             $table->unsignedBigInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles');
             $table->timestamps();

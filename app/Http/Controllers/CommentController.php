@@ -26,6 +26,7 @@ class CommentController extends Controller
         $validate['email'] = Auth::user()->email;
         $validate['content'] = $request->content;
         $validate['article_id'] = $request->article_id;
+        $validate['author_id'] = Auth::user()->id;
         // dd($validate);
         Comment::create($validate);
         return back();
