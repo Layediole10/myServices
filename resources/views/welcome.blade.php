@@ -32,9 +32,22 @@
                 @if (Route::has('login'))
                 <ul class="navbar-nav me-auto">
                     @auth
+                      @if (Auth::user()->role=="user")
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Accueil</a>
+                          <a class="nav-link" href="{{ url('/home') }}">Accueil</a>
                         </li>
+                        @else
+                          @if (Auth::user()->role=="professional")
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{ url('/professional') }}">Accueil</a>
+                            </li>
+                          @else
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin') }}">Accueil</a>
+                          </li>
+                        @endif
+                      @endif
+                        
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">S'identifier</a>

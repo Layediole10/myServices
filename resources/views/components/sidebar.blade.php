@@ -54,8 +54,8 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-white" href="#"><i class="bi bi-chat fs-3"></i>
-        Comments
+      <a class="nav-link text-white" href="{{url('/services-chat')}}"><i class="bi bi-chat fs-3"></i>
+        Discussions
       </a>
     </li>
     <li>

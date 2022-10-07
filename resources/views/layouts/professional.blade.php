@@ -122,6 +122,9 @@
                     
                   <h5 class="text-black">{{Auth::user()->name}}</h5>
                   <h5>
+                    <a href="{{url('/services-chat')}}">Mes discussions</a>
+                  </h5>
+                  <h5>
                     <a href="{{route('professional.edit',['professional'=>Auth::user()->id])}}">Gérer mon compte</a>
                   </h5>
                   

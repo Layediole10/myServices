@@ -109,6 +109,9 @@
                                 <a href="{{route('categories.index')}}">Mes demandes</a>
                             </div>
                             <div>
+                                <a href="{{url('/services-chat')}}">Mes discussions</a>
+                            </div>
+                            <div>
                                 <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
                             </div>
                     @endauth
