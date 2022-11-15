@@ -12,9 +12,9 @@
                 <h5 class="card-header bg-primary">Demande de services</h5>
                 <div class="card-body">
 
-                    <div class="card mb-3">
-                        <label for="category">Catégorie</label>
-                        <input type="text" name="category" id="category" value="{{$category->id}}">
+                    <div>
+                        {{-- <label for="category">Catégorie</label> --}}
+                        <input type="hidden" name="category" id="category" value="{{$category->id}}">
                     </div>
 
                     <div class="card mb-3">
@@ -78,5 +78,19 @@
         </form>
 
     </div>
+
+    <style>
+        body{
+            background-image: url('avatar/nature4.jpg');
+            background-color: #1f1b1b;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            color: #fff;
+    
+        }
+    </style>
     
 @endsection

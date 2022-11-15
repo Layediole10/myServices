@@ -1,4 +1,4 @@
-@extends('layouts.professional')
+@extends('layouts.admin')
 @section('title', 'comment-article')
 @section('content')
 
@@ -56,7 +56,7 @@
                 </div>
 
                 <input type="hidden" name="article-id" value="{{$article->id}}" id="article-id-js">
-                <button type="submit" style="text-decoration: none" class="btn btn-outline-primary">                            
+                <button type="submit" class="btn btn-outline-primary" style="text-decoration: none">                            
                     <i class="bi bi-hand-thumbs-up fs-2"></i>
                     J'aime
                 </button>
@@ -189,9 +189,8 @@
             <a href="{{url('/home')}}" class="btn btn-primary">Retour</a>
             @else @if (Auth::user()->role=="professional")
                 <a href="{{url('/professional')}}" class="btn btn-primary">Retour</a>
-                @else
+            @endif
                 <a href="{{url('/admin')}}" class="btn btn-primary">Retour</a>
-                @endif
         @endif
         
     </div>

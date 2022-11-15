@@ -28,7 +28,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="javascript:void(0)">EliteVision</a>
+              <a class="navbar-brand" href="{{url('/professional')}}">EliteVision</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -90,7 +90,7 @@
             </div>
         </nav>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom text-black">
-            <h1 class="h2">Page d'un Professionel</h1>
+            <h1 class="h2 mx-4">Professional: <em>{{Auth::user()->name}}</em></h1>
             
             <div class="btn-toolbar mb-2 mb-md-0">
                

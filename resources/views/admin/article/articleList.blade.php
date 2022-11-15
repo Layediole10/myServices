@@ -5,19 +5,19 @@
     {{$articles->links()}}
 
     @if (session('delete'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" id="alert">
             {{session('delete')}}
         </div>  
     @endif
 
     @if (session('update'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" id="alert">
             {{session('update')}}
         </div>
     @endif
 
     @if (session('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" id="alert">
             {{session('message')}}
         </div>
     @endif
@@ -29,7 +29,7 @@
     @endif
 
     @if (session('articleCreated'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" id="alert">
             {{session('articleCreated')}}
         </div>
     @endif
@@ -98,4 +98,12 @@
         </tbody>
     </table>
     {{$articles->links()}}
+
+    <script type="text/javascript">
+        $("document").ready(function(){
+            setTimeout(() => {
+                $("#alert").remove();
+            }, 3000);
+        })
+    </script>
 @endsection

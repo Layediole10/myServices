@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{Article, Comment, Demande, Like, User};
@@ -32,6 +33,45 @@ class AdminController extends Controller
             'comments'=>$comments,
         ]);
         
+    }
+
+    public function store(Request $request)
+    {
+
+        // dd($request->all());
+        $valid = $request->validate([
+            'title' => 'required|string|max:50',
+            'content' => 'required|string',
+            
+        ]);
+
+        $article = $valid;
+        $article['category_id'] = $request->category;
+        $article['region'] = $request->region;
+        $article['department'] = $request->department;
+        $article['municipality'] = $request->municipality;
+        $article['district'] = $request->district;
+        $article['publish'] = $request->publish?true:false;
+        $article['author_id'] = Auth::user()->id;
+        $article['occupation'] = $request->occupation;
+        $article['contact'] = $request->contact;
+       
+        $newArticle = Article::create($article);
+        // dd($newArticle);
+        if ($request->has('images')) {
+            foreach($request->file('images')as $image){
+                $imageName = 'image-'.time().rand(1,1000).'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('articleImages'),$imageName);
+
+                Image::create([
+                    'article_id'=>$newArticle->id,
+                    'image'=>$imageName
+                ]);
+            }
+        }
+        
+        return view('admin.adminConfirm');  
+
     }
 
     public function liker(){
@@ -77,7 +117,7 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (Auth::user()->id == $id) {
+        // if (Auth::user()->id == $id) {
             $user = User::find($id);
             $validate = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
@@ -110,5 +150,16 @@ class AdminController extends Controller
                  return back()->with("errorRegister","registration failed")->withInput();
                 }
         }
+
+        public function show($id)
+    {
+        $article = Article::findOrFail($id);
+        $comments = Comment::where('article_id', $id)->get();
+        return view('admin.adminCommentArticle', [
+            'article' => $article,
+            'comments' => $comments
+        ]); 
+        
     }
+    
 }

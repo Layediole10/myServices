@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Region, Department, Municipality, District, Category, Article, Image};
+use App\Models\{Region, Department, Municipality, District, Category, Article, Comment, Image, Like};
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -185,6 +185,8 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         Image::where('article_id', $id)->delete();
+        Comment::where('article_id', $id)->delete();
+        Like::where('article_id', $id)->delete();
         $article = Article::find($id);
         $article->delete();
         return back()->with('delete', "L'article n° $article->id a été supprimé avec succès!");

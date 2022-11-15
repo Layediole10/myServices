@@ -11,7 +11,7 @@
     </ul>
 </div>
 @endif
-<form method="POST" action="{{ route('professional.update', ['professional'=>$user->id]) }}" enctype="multipart/form-data" class="form-horizontal" role="form">
+<form method="POST" action="{{ route('admin.update', ['admin'=>$user->id]) }}" enctype="multipart/form-data" class="form-horizontal" role="form">
 @csrf   
 <div class="container-xl px-4 mt-4">
 

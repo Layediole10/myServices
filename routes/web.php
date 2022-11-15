@@ -39,14 +39,19 @@ Route::get('/registration', function (){
 })->name('signin');
 
 
+Route::get('/recherche-generale', [WelcomeController::class, 'rechercheGeneral'])->name('recherche');
+
+
 Auth::routes(['verify' => true]);
 
 
 //ADMIN ROUTE
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::post('/admin-create-article', [AdminController::class, 'store'])->name('admin.store');
     Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update');
+    Route::get('admin/{id}/show',  [AdminController::class, 'show'])->name('admin.show');
 
     //ARTICLES ROUTES
     Route::prefix('admin')->group(function () {
@@ -58,9 +63,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
     //USERS ROUTES
-    Route::resource('users', UserController::class)->except(['edit', 'update']);
+    Route::resource('users', UserController::class)->except(['edit', 'update', 'show']);
     Route::get('/search', [UserController::class, 'search'])->name('users.search');
     Route::get('users/{id}/view', [UserController::class, 'view'])->name('users.view');
+    
 
     //ACTUALITY
     Route::get('/admin', [AdminController::class, 'actualityAdmin']);
@@ -71,11 +77,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/article/{id}', [AdminController::class, 'contact'])->name('contact');
 });
 
+Route::get('articles/{id}',  [UserController::class, 'showArticle'])->name('users.show');
+
 //PROFESSIONAL ROUTE
 Route::middleware(['auth', 'professional'])->group(function(){
     Route::get('/professional', [RegisterProController::class, 'index'])->name('professional');
-    Route::get('/professional-create-article', [ArticleproController::class, 'create'])->name('articlepro.create');
-    Route::post('/professional-create-article',[ArticleproController::class, 'store'])->name('articlepro.store');
+    Route::get('/professional-create-article', [PublishArticleController::class, 'create'])->name('articlepro.create');
+    Route::post('/professional-create-article',[PublishArticleController::class, 'store'])->name('articlepro.store');
     Route::get('/professional/{professional}/edit', [RegisterProController::class, 'edit'])->name('professional.edit');
     Route::post('/professional/{professional}', [RegisterProController::class, 'update'])->name('professional.update');
 

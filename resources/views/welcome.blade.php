@@ -23,7 +23,7 @@
         
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="javascript:void(0)">EliteVision</a>
+              <a class="navbar-brand" href="{{url("/")}}">EliteVision</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -61,9 +61,10 @@
                 
                 </ul>
                 @endif
-                <form class="d-flex">
-                  <input class="form-control me-2" type="text" placeholder="Search">
-                  <button class="btn btn-primary" type="button">Search</button>
+                <form class="d-flex" method="GET" action="{{route('recherche')}}">
+                  @csrf
+                  <input class="form-control me-2" type="text" placeholder="chercher" name="q" value="{{request()->q ?? ''}}">
+                  <button class="btn btn-primary" type="submit">chercher</button>
                 </form>
               </div>
             </div>
@@ -75,8 +76,7 @@
                     
                 </div>
                 <div class="col-10">
-                    
-                    {{-- <div id="root"></div> --}}
+
                   @yield('content')
                 </div>
                 <div class="col">

@@ -4,7 +4,7 @@
     <div class="row text-dark">
         <div class="col-8 mx-4">
                     
-            <form action="{{route('articles.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('articlepro.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card">

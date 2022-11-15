@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,9 +79,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showArticle($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $comments = Comment::where('article_id', $id)->get();
+        return view('userService.userCommentArticle', [
+            'article' => $article,
+            'comments' => $comments
+        ]); 
+        
     }
 
     /**
