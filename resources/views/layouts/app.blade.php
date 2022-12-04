@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/user.css')}}">
 
     {{-- Icones --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -106,13 +107,13 @@
                         @endif
                             <h6>{{Auth::user()->name}}</h6>
                             <div>
-                                <a href="{{route('categories.index')}}">Mes demandes</a>
+                                <a class="link-user" href="{{route('categories.index')}}">Mes demandes</a>
                             </div>
                             <div>
-                                <a href="{{url('/services-chat')}}">Mes discussions</a>
+                                <a class="link-user" href="{{url('/services-chat')}}">Mes discussions</a>
                             </div>
                             <div>
-                                <a href="{{route('users.edit',['user'=>Auth::user()->id])}}">Gérer mon compte</a>
+                                <a href="{{route('users.edit',['user'=>Auth::user()->id])}}" class="link-user">Gérer mon compte</a>
                             </div>
                     @endauth
                 </div>

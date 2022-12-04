@@ -61,18 +61,18 @@
                                 <input type="hidden" name="article-id" value="{{$article->id}}" id="article-id-js">
                                 <button type="submit" class="btn btn-outline-primary" style="text-decoration: none" id="liker">                            
                                     <i class="bi bi-hand-thumbs-up fs-2"></i>
-                                    J'aime
+                                    aimer
                                 </button>
                             </form>
                             
 
                             <a href="{{route('users.show',['id'=>$article->id])}}" class="btn btn-outline-primary" style="text-decoration: none">                            
                                 <i class="bi bi-chat fs-2"></i>
-                                Commenter
+                                commenter
                             </a>
 
                             <a href="{{route('contact',['id'=>$article->id])}}" class="btn btn-outline-primary" style="text-decoration: none">                            
-                                <i class="bi bi-telephone fs-2"></i>
+                                <i class="bi bi-phone fs-2"></i>
                                 contacter
                             </a>
                             
@@ -113,7 +113,7 @@
                         <p class="card-text">{{$req->content}}</p>
                         {{-- <a href="{{route('postuler',['id'=>$req->id])}}" class="btn">Me contacter</a> --}}
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#contacter" data-bs-whatever="@contacter">
-                            <i class="bi bi-telephone fs-2"></i> contacter
+                            <i class="bi bi-phone fs-2"></i>
                         </button>
                     </div>
 

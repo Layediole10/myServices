@@ -60,18 +60,18 @@
                                 <input type="hidden" name="article-id" value="{{$article->id}}" id="article-id-js">
                                 <button type="submit" class="btn btn-outline-primary" id="liker">                            
                                     <i class="bi bi-hand-thumbs-up fs-2"></i>
-                                    J'aime
+                                    aimer
                                 </button>
                             </form>
                             
 
                             <a href="{{route('admin.show',['id'=>$article->id])}}" style="text-decoration: none" class="btn btn-outline-primary">                            
                                 <i class="bi bi-chat fs-2"></i>
-                                Commenter
+                                commenter
                             </a>
 
                             <a href="{{route('contact',['id'=>$article->id])}}" style="text-decoration: none" class="btn btn-outline-primary">                            
-                                <i class="bi bi-telephone fs-2"></i>
+                                <i class="bi bi-phone fs-2"></i>
                                 contacter
                             </a>
                             
@@ -108,7 +108,7 @@
                         <h5 class="card-title">{{$req->author->name}}</h5><hr>
                         <h6 class="card-title">{{$req->title}}</h6>
                         <p class="card-text">{{$req->content}}</p>
-                        <a href="#" class="btn">Me contacter</a>
+                        <a href="#" class="btn"><i class="bi bi-phone fs-2"></i></a>
                     </div>
             @endforeach
             

@@ -68,8 +68,11 @@
                 </form>
               </div>
             </div>
+            
           </nav>
-        
+          <div class="imageSite">
+            <img src="{{asset('avatar/siteModif.jpg')}}" alt="avatar" width="100%">
+          </div>
         <main class="text-center">
             <div class="row">
                 <div class="col">

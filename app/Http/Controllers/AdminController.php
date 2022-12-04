@@ -70,7 +70,7 @@ class AdminController extends Controller
             }
         }
         
-        return view('admin.adminConfirm');  
+        return redirect('/admin/articles')->with('articleConfirm', 'article crée avec succès!');  
 
     }
 

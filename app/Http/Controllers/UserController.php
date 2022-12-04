@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserCreatedNotification;
+use App\Models\Like;
+
 // use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
@@ -162,6 +164,8 @@ class UserController extends Controller
             }  
        }
         Article::where('author_id', $user->id)->delete();
+        // Comment::where('author_id', $user->id)->delete();
+        // Like::where('author_id', $user->id)->delete();
         $user->delete();
         return back()->with('delete', "L'utilisateur n° $user->id a été supprimé avec succès!");
     }

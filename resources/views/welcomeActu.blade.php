@@ -50,13 +50,13 @@
                         <hr>
 
                         <div class="d-flex justify-content-evenly">                       
-                            <a href="{{url('/login')}}" class="btn btn-outline-primary" style="text-decoration: none">                            
+                            <a href="{{url('/login')}}" class="btn btn-outline-primary" style="text-decoration: none" alt="commenter">                            
                                 <i class="bi bi-chat fs-2"></i>
-                                Commenter
+                                commenter
                             </a>
 
                             <a href="{{url('/login')}}" class="btn btn-outline-primary" style="text-decoration: none">                            
-                                <i class="bi bi-telephone fs-2"></i>
+                                <i class="bi bi-phone fs-2"></i>
                                 contacter
                             </a>
                             
@@ -94,7 +94,7 @@
                         <h5 class="card-title">{{$req->author->name}}</h5><hr>
                         <h6 class="card-title">{{$req->title}}</h6>
                         <p class="card-text">{{$req->content}}</p>
-                        <a href="{{url('/login')}}" class="btn">Me contacter</a>
+                        <a href="{{url('/login')}}" class="btn"><i class="bi bi-phone fs-2"></i></a>
                     </div>
             @endforeach
             
